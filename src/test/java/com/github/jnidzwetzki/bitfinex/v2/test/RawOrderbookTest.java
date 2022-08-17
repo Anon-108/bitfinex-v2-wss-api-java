@@ -39,6 +39,7 @@ public class RawOrderbookTest {
 
 	/**
 	 * Test the equals method
+	 * * 测试equals方法
 	 */
 	@Test
 	public void testTradingOrderbookEquals() {
@@ -53,6 +54,7 @@ public class RawOrderbookTest {
 	
 	/**
 	 * Test the build from JSON array
+	 * * 从 JSON 数组测试构建
 	 */
 	@Test
 	public void createBitfinexOrderBookSymbolFromJSON() {

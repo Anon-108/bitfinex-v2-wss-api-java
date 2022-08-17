@@ -37,16 +37,19 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * The known currencies
+	 * * 已知货币
 	 */
 	private final static Map<String, BitfinexCurrencyPair> instances = new ConcurrentHashMap<>();
 
 	/**
 	 * The Bitfinex symbol URL
+	 * * Bitfinex 符号 URL
 	 */
 	public static final String SYMBOL_URL = "https://api.bitfinex.com/v1/symbols_details";
 
 	/**
 	 * Load and register all known currencies
+	 * * 加载并注册所有已知货币
 	 *
 	 * @throws BitfinexClientException
 	 */
@@ -82,8 +85,9 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Parse the currency type
-	 * @param pairs
-	 * @return the type of the currency
+	 * * 解析货币类型
+	 * @param pairs 对
+	 * @return the type of the currency 货币类型
 	 */
     private static BitfinexCurrencyType parseCurrencyType(final Pair<String, String> pairs) {
     	
@@ -99,9 +103,13 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
      * Parse the currency pair. Some new pairs contain ':' and are longer than 6 chars, e.g. "dusk:usd".
+	 * * 解析货币对。一些新的对包含 ':' 并且长度超过 6 个字符，例如“黄昏：美元”。
      * Pairs with the format *f0:*f0 (e.g. btcf0:ustf0) are 'perpetual contracts'
+	 * * 格式为 *f0:*f0 的货币对（例如 btcf0:ustf0）是“永续合约”
      * @param pair bitfinex's currency pair.
+	 *             * @param pair bitfinex 的货币对。
      * @return A {@link Pair} with currency1 as first and currency2 as second element.
+	 * * @return 一个 {@link Pair}，其中 currency1 作为第一个元素，currency2 作为第二个元素。
      */
     private static Pair<String, String> parsePair(final String pair) throws BitfinexClientException{
         final int idx = pair.indexOf(":");
@@ -114,7 +122,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
             currency2 = pair.substring(idx + 1).toUpperCase();
         } else {
             if (pair.length() != 6) {
-                throw new BitfinexClientException("The currency pair is not 6 chars long: " + pair);
+                throw new BitfinexClientException("The currency pair is not 6 chars long 货币对不是 6 个字符长: " + pair);
             }
             currency1 = pair.substring(0, 3).toUpperCase();
             currency2 = pair.substring(3, 6).toUpperCase();
@@ -128,12 +136,13 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Registers currency pair for use within library
+	 * * 注册货币对以在图书馆内使用
 	 *
-	 * @param currency         currency (from)
-	 * @param profitCurrency   currency (to)
-	 * @param type the currency type
-	 * @param minimalOrderSize minimal order size
-	 * @return registered instance of {@link BitfinexCurrencyPair}
+	 * @param currency         currency (from) 货币货币（从）
+	 * @param profitCurrency   currency (to) 利润货币货币（到）
+	 * @param type the currency type  输入货币类型
+	 * @param minimalOrderSize minimal order size 最小订单量
+	 * @return registered instance of 的注册实例 {@link BitfinexCurrencyPair}
 	 */
 	public static BitfinexCurrencyPair register(final String currency,
 			final String profitCurrency, final BitfinexCurrencyType type, final double minimalOrderSize) {
@@ -147,7 +156,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 		// The currency was already registered
 		if(oldCurrency != null) {
-			throw new IllegalArgumentException("The currency " + key + " is already known");
+			throw new IllegalArgumentException("The currency  货币" + key + " is already known 已经知道");
 		}
 
 		return newCurrency;
@@ -155,10 +164,10 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Retrieves bitfinex currency pair
-	 *
-	 * @param currency       currency (from)
-	 * @param profitCurrency currency (to)
-	 * @return BitfinexCurrencyPair
+	 * * 检索 bitfinex 货币对
+	 * @param currency       currency (from) 货币（从）
+	 * @param profitCurrency currency (to) 货币（到）
+	 * @return BitfinexCurrencyPair Bitfinex 货币对
 	 */
 	public static BitfinexCurrencyPair of(final String currency, final String profitCurrency) {
 		final String key = buildCacheKey(currency, profitCurrency);
@@ -166,7 +175,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 		final BitfinexCurrencyPair bcp = instances.get(key);
 
 		if (bcp == null) {
-			throw new IllegalArgumentException("CurrencyPair is not registered: " + currency + " " + profitCurrency);
+			throw new IllegalArgumentException("CurrencyPair is not registered 货币对未注册: " + currency + " " + profitCurrency);
 		}
 
 		return bcp;
@@ -174,6 +183,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Build the cache key
+	 * * 构建缓存键
 	 *
 	 * @param currency1
 	 * @param currency2
@@ -185,8 +195,10 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * lists all available pairs
+	 * * 列出所有可用的对
 	 *
 	 * @return list of BitfinexCurrencyPair
+	 * * @return BitfinexCurrencyPair 列表
 	 */
 	public static Collection<BitfinexCurrencyPair> values() {
 		return instances.values();
@@ -194,21 +206,25 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * The name of the first currency
+	 * * 第一种货币的名称
 	 */
 	private final String currency1;
 
 	/**
 	 * The name of the second currency
+	 * * 第二种货币的名称
 	 */
 	private final String currency2;
 	
 	/**
 	 * The currency type
+	 * * 货币类型
 	 */
 	private final BitfinexCurrencyType currencyType;
 
 	/**
 	 * The minimum order size
+	 * * 最小订单大小
 	 */
 	private double minimumOrderSize;
 
@@ -223,6 +239,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Get the minimum order size
+	 * * 获取最小订单大小
 	 * @return
 	 */
 	public double getMinimumOrderSize() {
@@ -231,6 +248,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 	
 	/**
 	 * Get the currency type
+	 * * 获取货币类型
 	 * @return
 	 */
 	public BitfinexCurrencyType getCurrencyType() {
@@ -239,6 +257,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Set the minimum order size
+	 * * 设置最小订单大小
 	 * @param minimumOrderSize
 	 */
 	public void setMinimumOrderSize(final double minimumOrderSize) {
@@ -247,6 +266,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Construct from string
+	 * * 从字符串构造
 	 * @param symbolString
 	 * @return
 	 */
@@ -256,11 +276,12 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 				return currency;
 			}
 		}
-		throw new IllegalArgumentException("Unable to find currency pair for: " + symbolString);
+		throw new IllegalArgumentException("Unable to find currency pair for 找不到货币对: " + symbolString);
 	}
 
 	/**
 	 * Convert to bitfinex string (t means trading pair)
+	 * * 转换为bitfinex字符串（t表示交易对）
 	 * @return
 	 */
 	@Override
@@ -274,6 +295,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Get the first currency
+	 * * 获取第一个货币
 	 * @return
 	 */
 	public String getCurrency1() {
@@ -282,6 +304,7 @@ public class BitfinexCurrencyPair implements BitfinexInstrument {
 
 	/**
 	 * Set the second currency
+	 * * 设置第二种货币
 	 * @return
 	 */
 	public String getCurrency2() {

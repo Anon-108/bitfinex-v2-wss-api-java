@@ -52,10 +52,11 @@ public class ExecutedTradeHandler implements ChannelCallbackHandler {
             final List<BitfinexExecutedTrade> trades = new ArrayList<>();
 
             if( action.equals("tu")) {
-                return; // Ignore tu messages (see issue #13)
+                return; // Ignore tu messages (see issue #13) 忽略你的消息（见问题 #13）
             }
 
             // Snapshots contain multiple executes entries, updates only one
+            // 快照包含多个执行条目，只更新一个
             if (jsonArray.get(0) instanceof JSONArray) {
                 for (int pos = 0; pos < jsonArray.length(); pos++) {
                     final JSONArray parts = jsonArray.getJSONArray(pos);
@@ -110,8 +111,10 @@ public class ExecutedTradeHandler implements ChannelCallbackHandler {
 
     /**
      * candlestick consumer
+     * 烛台消费者
      *
      * @param consumer of event
+     *                 事件消费者
      */
     public void onExecutedTradeEvent(BiConsumer<BitfinexExecutedTradeSymbol, Collection<BitfinexExecutedTrade>> consumer) {
         this.executedTradesConsumer = consumer;

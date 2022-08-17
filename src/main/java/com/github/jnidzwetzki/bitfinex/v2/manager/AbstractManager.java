@@ -25,11 +25,13 @@ public abstract class AbstractManager {
 	
 	/**
 	 * The executor service
+	 * * 执行者服务
 	 */
 	protected final ExecutorService executorService;
 
 	/**
 	 * The bitfinex API broker
+	 * * bitfinex API 代理
 	 */
 	protected final BitfinexWebsocketClient client;
 

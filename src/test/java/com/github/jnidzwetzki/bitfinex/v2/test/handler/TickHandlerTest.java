@@ -49,11 +49,13 @@ public class TickHandlerTest {
 
     /**
      * The delta for double compares
+     * * 双重比较的增量
      */
     private static final double DELTA = 0.001;
 
     /**
      * Test the parsing of one tick
+     * * 测试一个tick的解析
      *
      * @throws BitfinexClientException
      */

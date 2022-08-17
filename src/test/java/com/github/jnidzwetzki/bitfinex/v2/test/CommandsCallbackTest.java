@@ -43,6 +43,7 @@ public class CommandsCallbackTest {
 	
 	/**
 	 * Test the auth callback
+	 * * 测试认证回调
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -59,6 +60,7 @@ public class CommandsCallbackTest {
 	
 	/**
 	 * Test the auth callback
+	 * * 测试认证回调
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -76,6 +78,7 @@ public class CommandsCallbackTest {
 	
 	/**
 	 * Test the pong callback
+	 * * 测试 pong 回调
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -90,6 +93,7 @@ public class CommandsCallbackTest {
 	
 	/**
 	 * Test the subscribed callback
+	 * * 测试订阅的回调
 	 * @throws BitfinexClientException
 	 */
 	@Test

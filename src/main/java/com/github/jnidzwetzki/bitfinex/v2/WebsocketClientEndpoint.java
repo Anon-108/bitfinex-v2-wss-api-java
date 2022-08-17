@@ -46,35 +46,42 @@ public class WebsocketClientEndpoint implements Closeable {
 
 	/**
 	 * The user session
+	 * * 用户会话
 	 */
 	private Session userSession = null;
 
 	/**
 	 * The message consumer
+	 * * 消息消费者
 	 */
 	private final Consumer<String> onMessageConsumer;
 
 	/**
 	 * The error consumer
+	 * * 错误消费者
 	 */
 	private final Consumer<Throwable> onErrorConsumer;
 
 	/**
 	 * The close reason consumer
+	 * * 关闭原因消费者
 	 */
 	private final Consumer<CloseReason> onCloseConsumer;
 	/**
 	 * The endpoint URL
+	 * * 端点 URL
 	 */
 	private final URI endpointURI;
 	
 	/**
 	 * The Logger
+	 * * 记录器
 	 */
 	private final static Logger logger = LoggerFactory.getLogger(SimpleBitfinexApiBroker.class);
 
 	/**
 	 * The wait for connection latch
+	 * * 等待连接锁存器
 	 */
 	private CountDownLatch connectLatch = new CountDownLatch(0);
 
@@ -89,6 +96,7 @@ public class WebsocketClientEndpoint implements Closeable {
 
 	/**
 	 * Open a new connection and wait until connection is ready
+	 * * 打开一个新连接并等待连接准备好
 	 * 
 	 * @throws DeploymentException
 	 * @throws IOException
@@ -103,13 +111,13 @@ public class WebsocketClientEndpoint implements Closeable {
 
 	@OnOpen
 	public void onOpen(final Session userSession) {
-		logger.debug("Websocket is now open");
+		logger.debug("Websocket is now open Websocket 现已打开");
 		connectLatch.countDown();
 	}
 
 	@OnClose
 	public void onClose(final Session userSession, final CloseReason reason) {
-		logger.debug("Closing websocket: {}", reason);
+		logger.debug("Closing websocket 关闭 websocket: {}", reason);
 		onCloseConsumer.accept(reason);
 		this.userSession = null;
 	}
@@ -121,22 +129,23 @@ public class WebsocketClientEndpoint implements Closeable {
 	
 	@OnError
     public void onError(final Session session, final Throwable t) {
-		logger.error("OnError called {}", Throwables.getStackTraceAsString(t));
+		logger.error("OnError called  调用 OnError{}", Throwables.getStackTraceAsString(t));
 		onErrorConsumer.accept(t);
 		connectLatch.countDown();
     }
 
 	/**
 	 * Send a new message to the server
+	 * * 向服务器发送新消息
 	 * @param message
 	 */
 	public void sendMessage(final String message) {
 		if(userSession == null) {
-			logger.error("Unable to send message, user session is null");
+			logger.error("Unable to send message, user session is null 无法发送消息，用户会话为空");
 			return;
 		}
 		if(userSession.getAsyncRemote() == null) {
-			logger.error("Unable to send message, async remote is null");
+			logger.error("Unable to send message, async remote is null 无法发送消息，异步远程为空");
 			return;
 		}
 		userSession.getAsyncRemote().sendText(message);
@@ -144,6 +153,7 @@ public class WebsocketClientEndpoint implements Closeable {
 
 	/**
 	 * Close the connection
+	 * * 关闭连接
 	 */
 	@Override
 	public void close() {
@@ -155,7 +165,7 @@ public class WebsocketClientEndpoint implements Closeable {
 			final CloseReason closeReason = new CloseReason(CloseCodes.NORMAL_CLOSURE, "Socket closed");
 			userSession.close(closeReason);
 		} catch (Throwable e) {
-			logger.error("Got exception while closing socket", e);
+			logger.error("Got exception while closing socket 关闭套接字时出现异常", e);
 		}
 		
 		userSession = null;
@@ -163,6 +173,7 @@ public class WebsocketClientEndpoint implements Closeable {
 	
 	/**
 	 * Is this websocket connected
+	 * * 这个 websocket 是否连接
 	 * @return
 	 */
 	public boolean isConnected() {

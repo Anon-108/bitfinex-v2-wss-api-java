@@ -38,7 +38,9 @@ public class UnsubscribedCallback implements CommandCallbackHandler {
 
 	/**
 	 * unsubscribe event handler
+	 * 取消订阅事件处理程序
 	 * @param consumer of event
+	 *                 事件消费者
 	 */
 	public void onUnsubscribedChannelEvent(final Consumer<Integer> consumer) {
 		this.unsubscribedConsumer = consumer;

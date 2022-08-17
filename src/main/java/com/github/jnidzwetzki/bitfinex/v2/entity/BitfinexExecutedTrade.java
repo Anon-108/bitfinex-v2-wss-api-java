@@ -24,33 +24,41 @@ public class BitfinexExecutedTrade {
 
 	/**
 	 * trade id
+	 * * 贸易编号
 	 */
 	private Long tradeId;
 
 	/**
 	 * execution timestamp
+	 * * 执行时间戳
 	 */
 	private Long timestamp;
 
 	/**
 	 * amount - positive for buy, negative for sell
+	 * * 金额 - 买入为正，卖出为负
 	 */
 	private BigDecimal amount;
 
 	/**
 	 * price at which trade was executed
+	 * * 交易执行的价格
 	 */
 	private BigDecimal price;
 
 	/**
 	 * !! USED ONLY BY FUNDING
-	 * Rate at which funding transaction occurred
+	 * 	 * Rate at which funding transaction occurred
+	 * 	 仅用于资助
+	 * * 资金交易发生的比率
 	 */
 	private BigDecimal rate;
 
 	/**
 	 * !! USED ONLY BY FUNDING
 	 * Amount of time the funding transaction was for
+	 * ！！仅用于资助
+	 * * 资金交易的时间量
 	 */
 	private Long period;
 

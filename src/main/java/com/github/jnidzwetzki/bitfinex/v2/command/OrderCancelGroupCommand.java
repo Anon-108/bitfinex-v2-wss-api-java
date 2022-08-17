@@ -25,7 +25,7 @@ import org.json.JSONObject;
 public class OrderCancelGroupCommand implements BitfinexOrderCommand {
 
 	/**
-	 * The order group
+	 * The order group 订单组
 	 */
 	private int orderGroup;
 

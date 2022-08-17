@@ -9,6 +9,7 @@ public class BitfinexAccountSymbol implements BitfinexStreamSymbol {
 
 	 /**
      * The key permissions
+      * * 密钥权限
      */
     private final BitfinexApiKeyPermissions permissions;
 

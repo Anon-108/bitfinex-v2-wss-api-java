@@ -39,7 +39,7 @@ public class BitfinexWallet {
 					return type;
 				}
 			}
-			throw new IllegalArgumentException("Type not handled: " + value);
+			throw new IllegalArgumentException("Type not handled 类型未处理: " + value);
 		}
 	}
 

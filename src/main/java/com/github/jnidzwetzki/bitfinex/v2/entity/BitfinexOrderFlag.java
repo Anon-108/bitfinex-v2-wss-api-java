@@ -19,26 +19,33 @@ package com.github.jnidzwetzki.bitfinex.v2.entity;
 
 public enum BitfinexOrderFlag {
 
-	// one cancels other order 
+	// one cancels other order
+	// 一个取消另一个订单
 	OCO(16384),
 	
-	// post-only limit order 
+	// post-only limit order
+	// 后限价单
 	POSTONLY(4096),
 	
 	// hidden order
+	//隐藏订单
 	HIDDEN(64),
 	
 	// Excludes variable rate funding offers
+	// 不包括浮动利率融资优惠
 	NO_VR(524288),
 	
 	// Close position if present
+	// 如果存在则平仓
 	POS_CLOSE(512),
 	
 	// Reduce margin position only
+	// 只减少保证金头寸
 	REDUCE_ONLY(1024);
 	
 	/**
 	 * The order flag
+	 * * 订单标志
 	 */
 	private final int flag;
 	
@@ -48,6 +55,7 @@ public enum BitfinexOrderFlag {
 	
 	/**
 	 * Get the order flag
+	 * * 获取订单标志
 	 * @return
 	 */
 	public int getFlag() {

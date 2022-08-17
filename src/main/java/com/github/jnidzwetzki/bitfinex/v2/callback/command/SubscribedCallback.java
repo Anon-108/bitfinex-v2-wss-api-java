@@ -59,7 +59,7 @@ public class SubscribedCallback implements CommandCallbackHandler {
 				symbol = handleBookCallback(jsonObject);
 				break;
 			default:
-				logger.error("Unknown subscribed callback {}", jsonObject.toString());
+				logger.error("Unknown subscribed callback 未知的订阅回调 {}", jsonObject.toString());
 		}
 		if (symbol != null) {
 			subscribeResultConsumer.accept(channelId, symbol);
@@ -67,8 +67,8 @@ public class SubscribedCallback implements CommandCallbackHandler {
 	}
 
 	/**
-	 * subscribed event consumer
-	 * @param consumer of event
+	 * subscribed event consumer 订阅的事件消费者
+	 * @param consumer of event 事件消费者
 	 */
 	public void onSubscribedEvent(BiConsumer<Integer, BitfinexStreamSymbol> consumer) {
 		this.subscribeResultConsumer = consumer;

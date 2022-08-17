@@ -54,15 +54,15 @@ public class OrderHandler implements ChannelCallbackHandler {
      */
     @Override
     public void handleChannelData(final String action, final JSONArray payload) throws BitfinexClientException {
-        logger.info("Got order callback {}", payload.toString());
+        logger.info("Got order callback 收到订单回调 {}", payload.toString());
 
-        // No orders active
+        // No orders active 没有有效的订单
         if (payload.isEmpty()) {
             eventConsumer.accept(symbol, Lists.newArrayList());
             return;
         }
 
-        // Snapshot or update
+        // Snapshot or update 快照或更新
         List<BitfinexSubmittedOrder> orders = Lists.newArrayList();
         if (payload.get(0) instanceof JSONArray) {
             for (int orderPos = 0; orderPos < payload.length(); orderPos++) {
@@ -136,8 +136,8 @@ public class OrderHandler implements ChannelCallbackHandler {
 
     /**
      * exchange order event consumer
-     *
-     * @param consumer of event
+     * 交换订单事件消费者
+     * @param consumer of event 事件消费者
      */
     public void onSubmittedOrderEvent(BiConsumer<BitfinexAccountSymbol, Collection<BitfinexSubmittedOrder>> consumer) {
         this.eventConsumer = consumer;

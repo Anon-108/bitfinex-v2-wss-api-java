@@ -33,6 +33,6 @@ public class ErrorCallback implements CommandCallbackHandler {
 	@Override
 	public void handleChannelData(final JSONObject jsonObject) throws BitfinexClientException {
 		// {"channel":"ticker","symbol":"tLTCUSD","event":"error","msg":"subscribe: dup","code":10301,"pair":"LTCUSD"}
-		logger.error("Got error callback: {}", jsonObject);
+		logger.error("Got error callback: 收到错误回调 {}", jsonObject);
 	}
 }

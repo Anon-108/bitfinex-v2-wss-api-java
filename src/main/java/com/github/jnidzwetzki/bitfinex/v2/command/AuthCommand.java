@@ -32,16 +32,19 @@ public class AuthCommand implements BitfinexCommand {
 
 	/**
 	 * The used auth algorithm
+	 * * 使用的认证算法
 	 */
 	private static final String HMAC_SHA1_ALGORITHM = "HmacSHA384";
 	
 	/**
 	 * The auth nonce supplier
+	 * * auth nonce 供应商
 	 */
 	private final Supplier<String> authNonceSupplier;
 	
 	/**
 	 * Default auth nonce producer
+	 * * 默认身份验证随机数生产者
 	 */
 	public static Supplier<String> AUTH_NONCE_PRODUCER_TIMESTAMP = () -> Long.toString(System.currentTimeMillis());
 	

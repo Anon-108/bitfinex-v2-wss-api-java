@@ -32,6 +32,7 @@ public class TradeManager extends SimpleCallbackManager<BitfinexMyExecutedTrade>
 	
 	/**
 	 * Update a exchange order
+	 * * 更新换货单
 	 * @param trade
 	 */
 	public void updateTrade(final BitfinexAccountSymbol account, final BitfinexMyExecutedTrade trade) {

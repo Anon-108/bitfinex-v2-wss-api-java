@@ -23,42 +23,46 @@ import java.util.Optional;
 public class BitfinexCandle implements Comparable<BitfinexCandle>{
 	
 	/**
-	 * The timestamp
+	 * The timestamp 时间戳
 	 */
 	private final long timestamp;
 	
 	/**
 	 * The open price
+	 * * 开盘价
 	 */
 	private final BigDecimal open;
 	
 	/**
 	 * The close price
+	 * * 收盘价
 	 */
 	private final BigDecimal close;
 	
 	/**
 	 * The high price
+	 * * 高价
 	 */
 	private final BigDecimal high;
 	
 	/**
 	 * The low price
+	 * * 低价
 	 */
 	private final BigDecimal low;
 	
 	/**
-	 * The volume
+	 * The volume 卷
 	 */
 	private final Optional<BigDecimal> volume;
 	
 	public BitfinexCandle(final long timestamp, final BigDecimal open, final BigDecimal close, 
 			final BigDecimal high, final BigDecimal low, final Optional<BigDecimal> volume) {
 		
-		assert (high.doubleValue() >= open.doubleValue()) : "High needs to be >= open";
-		assert (high.doubleValue() >= close.doubleValue()) : "High needs to be => close";
-		assert (low.doubleValue() <= open.doubleValue()) : "Low needs to be <= open";
-		assert (low.doubleValue() <= close.doubleValue()) : "Low needs to be <= close";
+		assert (high.doubleValue() >= open.doubleValue()) : "High needs to be >= open 高需要 >= 打开";
+		assert (high.doubleValue() >= close.doubleValue()) : "High needs to be => close 需要高 => 关闭";
+		assert (low.doubleValue() <= open.doubleValue()) : "Low needs to be <= open 低需要 <= 打开";
+		assert (low.doubleValue() <= close.doubleValue()) : "Low needs to be <= close 低需要 <= 关闭";
 
 		this.timestamp = timestamp;
 		this.open = open;

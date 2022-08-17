@@ -28,11 +28,12 @@ public class FutureOperation {
 	
 	/**
 	 * The is done latch
+	 * * 完成锁存器
 	 */
 	private final CountDownLatch doneLatch = new CountDownLatch(1);
 	
 	/**
-	 * The symbol
+	 * The symbol 标记
 	 */
 	private final BitfinexStreamSymbol symbol;
 
@@ -41,7 +42,7 @@ public class FutureOperation {
 	}
 	
 	/**
-	 * Get the stream symbol
+	 * Get the stream symbol * 获取流符号
 	 * @return
 	 */
 	public BitfinexStreamSymbol getSymbol() {
@@ -49,7 +50,7 @@ public class FutureOperation {
 	}
 
 	/**
-	 * Is the operation done?
+	 * Is the operation done? * 操作完成了吗？
 	 * @return
 	 */
 	public boolean isDone() {
@@ -57,7 +58,7 @@ public class FutureOperation {
 	}
 	
 	/**
-	 * The the future to done
+	 * The the future to done * 未来要做的事
 	 */
 	public void setToDone() {
 		if(! isDone()) {
@@ -66,7 +67,7 @@ public class FutureOperation {
 	}
 
 	/**
-	 * Wait for the completion of the operation
+	 * Wait for the completion of the operation * 等待操作完成
 	 * @throws InterruptedException
 	 * @throws ExecutionException
 	 */
@@ -75,7 +76,7 @@ public class FutureOperation {
 	}
 
 	/**
-	 * Wait for the completion of the operation (timed version)
+	 * Wait for the completion of the operation (timed version) * 等待操作完成（定时版）
 	 * @param timeout
 	 * @param unit
 	 * @throws InterruptedException

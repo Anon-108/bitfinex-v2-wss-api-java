@@ -48,6 +48,7 @@ public class BitfinexWalletHandlerTest {
 
 	/**
 	 * The delta for double compares
+	 * 	 * The delta for double compares
 	 */
 	private static final double DELTA = 0.001;
 
@@ -93,6 +94,7 @@ public class BitfinexWalletHandlerTest {
 	
 	/**
 	 * Test the wallet parsing
+	 * * 测试钱包解析
 	 * @throws BitfinexClientException
 	 * @throws InterruptedException 
 	 */

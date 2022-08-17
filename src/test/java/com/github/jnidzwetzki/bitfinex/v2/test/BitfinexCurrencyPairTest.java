@@ -16,15 +16,16 @@ public class BitfinexCurrencyPairTest {
 
     /**
      * Test parsing the pairs.
+     * * 测试解析对。
      */
     @Test
     public void registerDefaultsTestSplitting() {
         BitfinexCurrencyPair.registerDefaults();
         Collection<BitfinexCurrencyPair> pairs = BitfinexCurrencyPair.values();
-        // pair "btcusd"
+        // pair "btcusd" // 对“btcusd”
         Assert.assertEquals(1,
                 pairs.stream().filter(p -> p.getCurrency1().equals("BTC") && p.getCurrency2().equals("USD")).count());
-        // pair "dusk:btc"
+        // pair "dusk:btc" // 对“dusk：btc”
         Assert.assertEquals(1,
                 pairs.stream().filter(p -> p.getCurrency1().equals("DUSK") && p.getCurrency2().equals("BTC")).count());
     }

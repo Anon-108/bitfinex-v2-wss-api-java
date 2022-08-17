@@ -50,6 +50,7 @@ public class BitfinexPositionTest {
 
 	/**
 	 * Test the position handler
+	 * * 测试位置处理程序
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -73,6 +74,7 @@ public class BitfinexPositionTest {
 	
 	/**
 	 * Test the position handler - with null funding type
+	 * * 测试仓位处理程序 - 资金类型为空
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -96,6 +98,7 @@ public class BitfinexPositionTest {
 	
 	/**
 	 * Test the position handler
+	 * * 测试位置处理程序
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -119,6 +122,7 @@ public class BitfinexPositionTest {
 	
 	/**
 	 * Build a mocked bitfinex connection
+	 * * 建立一个模拟的 bitfinex 连接
 	 * @return
 	 */
 	private BitfinexWebsocketClient buildMockedBitfinexConnection() {

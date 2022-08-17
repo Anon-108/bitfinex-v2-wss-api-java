@@ -42,31 +42,37 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * The last ticks
+	 * * 最后的钩子
 	 */
 	private final Map<BitfinexStreamSymbol, Long> lastTickerActivity;
 
 	/**
 	 * The BitfinexCurrencyPair callbacks
+	 * * BitfinexCurrencyPair 回调
 	 */
 	private final BiConsumerCallbackManager<BitfinexTickerSymbol, BitfinexTick> tickerCallbacks;
 
 	/**
 	 * The Bitfinex Candlestick callbacks
+	 * * Bitfinex 烛台/阴阳线 回调
 	 */
 	private final BiConsumerCallbackManager<BitfinexCandlestickSymbol, BitfinexCandle> candleCallbacks;
 
 	/**
 	 * The channel callbacks
+	 * * 通道回调
 	 */
 	private final BiConsumerCallbackManager<BitfinexExecutedTradeSymbol, BitfinexExecutedTrade> tradesCallbacks;
 
 	/**
 	 * The pending subscribes
+	 * * 待定订阅
 	 */
 	private final FutureOperationRegistry pendingSubscribes;
 	
 	/**
 	 * The pending unsubscibes
+	 * * 待取消订阅
 	 */
 	private final FutureOperationRegistry pendingUnsubscribes;
 	
@@ -94,6 +100,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Get the last heartbeat for the symbol
+	 * * 获取符号的最后一次心跳
 	 * @param symbol
 	 * @return
 	 */
@@ -103,7 +110,8 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Update the channel heartbeat
-	 * @param channel
+	 * * 更新通道心跳
+	 * @param symbol
 	 */
 	public void updateChannelHeartbeat(final BitfinexStreamSymbol symbol) {
 		lastTickerActivity.put(symbol, System.currentTimeMillis());
@@ -111,6 +119,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Get the last ticker activity
+	 * * 获取最后的股票活动
 	 * @return
 	 */
 	public Map<BitfinexStreamSymbol, Long> getLastTickerActivity() {
@@ -119,6 +128,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Invalidate the ticker heartbeat values
+	 * * 使股票心跳值无效
 	 */
 	public void invalidateTickerHeartbeat() {
 		lastTickerActivity.clear();
@@ -126,6 +136,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Register a new tick callback
+	 * * 注册一个新的刻度回调
 	 * @param symbol
 	 * @param callback
 	 * @throws BitfinexClientException
@@ -138,6 +149,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Remove the a tick callback
+	 * * 移除勾选回调
 	 * @param symbol
 	 * @param callback
 	 * @return
@@ -151,8 +163,9 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Process a list with candles
+	 * * 处理带有蜡烛的列表
 	 * @param symbol
-	 * @param ticksArray
+	 * @param candles
 	 */
 	public void handleCandleCollection(final BitfinexTickerSymbol symbol, final List<BitfinexTick> candles) {
 		updateChannelHeartbeat(symbol);
@@ -161,8 +174,9 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Handle a new candle
-	 * @param symbol
-	 * @param candle
+	 * * 处理新蜡烛
+	 * @param currencyPair
+	 * @param tick
 	 */
 	public void handleNewTick(final BitfinexTickerSymbol currencyPair, final BitfinexTick tick) {
 		updateChannelHeartbeat(currencyPair);
@@ -171,6 +185,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Subscribe a ticker
+	 * *订阅股票代码
 	 * @param tickerSymbol
 	 * @return 
 	 * @throws BitfinexClientException
@@ -189,6 +204,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Unsubscribe a ticker
+	 * * 取消订阅股票代码
 	 * @param tickerSymbol
 	 * @return 
 	 */
@@ -206,6 +222,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Register a new candlestick callback
+	 * * 注册一个新的烛台回调
 	 * @param symbol
 	 * @param callback
 	 * @throws BitfinexClientException
@@ -218,6 +235,7 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Remove the a candlestick callback
+	 * * 移除烛台回调
 	 * @param symbol
 	 * @param callback
 	 * @return
@@ -232,8 +250,9 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Process a list with candlesticks
+	 * * 处理带有烛台的列表
 	 * @param symbol
-	 * @param ticksArray
+	 * @param ticksBuffer
 	 */
 	public void handleCandlestickCollection(final BitfinexCandlestickSymbol symbol, final Collection<BitfinexCandle> ticksBuffer) {
 		candleCallbacks.handleEventsCollection(symbol, ticksBuffer);
@@ -241,7 +260,8 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Handle a new candlestick
-	 * @param symbol
+	 * * 处理一个新的烛台
+	 * @param currencyPair
 	 * @param tick
 	 */
 	public void handleNewCandlestick(final BitfinexCandlestickSymbol currencyPair, final BitfinexCandle tick) {
@@ -251,9 +271,9 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Subscribe candles for a symbol
-	 * @param currencyPair
-	 * @param timeframe
-	 * @return 
+	 * *为符号订阅蜡烛
+	 * @param symbol
+	 * @return
 	 * @throws BitfinexClientException
 	 */
 	public FutureOperation subscribeCandles(final BitfinexCandlestickSymbol symbol) throws BitfinexClientException {
@@ -269,9 +289,9 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Unsubscribe the candles
-	 * @param currencyPair
-	 * @param timeframe
-	 * @return 
+	 * * 取消订阅蜡烛
+	 * @param symbol
+	 * @return
 	 */
 	public FutureOperation unsubscribeCandles(final BitfinexCandlestickSymbol symbol) {
 		lastTickerActivity.remove(symbol);
@@ -287,7 +307,8 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Register a new executed trade callback
-	 * @param symbol
+	 * * 注册一个新的执行交易回调
+	 * @param orderbookConfiguration
 	 * @param callback
 	 * @throws BitfinexClientException
 	 */
@@ -299,7 +320,8 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Remove a executed trade callback
-	 * @param symbol
+	 * * 移除一个已执行的交易回调
+	 * @param tradeSymbol
 	 * @param callback
 	 * @return
 	 * @throws BitfinexClientException
@@ -312,11 +334,9 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Subscribe a executed trade channel
-	 * @param currencyPair
-	 * @param orderBookPrecision
-	 * @param orderBookFrequency
-	 * @param pricePoints
-	 * @return 
+	 * * 订阅一个已执行的交易通道
+	 * @param tradeSymbol
+	 * @return
 	 */
 	public FutureOperation subscribeExecutedTrades(final BitfinexExecutedTradeSymbol tradeSymbol) {
 
@@ -333,10 +353,8 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Unsubscribe a executed trades channel
-	 * @param currencyPair
-	 * @param orderBookPrecision
-	 * @param orderBookFrequency
-	 * @param pricePoints
+	 * * 取消订阅已执行交易频道
+	 * @param tradeSymbol
 	 * @return 
 	 */
 	public FutureOperation unsubscribeExecutedTrades(final BitfinexExecutedTradeSymbol tradeSymbol) {
@@ -351,8 +369,9 @@ public class QuoteManager extends AbstractManager {
 
 	/**
 	 * Handle a new executed trade
-	 * @param symbol
-	 * @param tick
+	 * * 处理新的执行交易
+	 * @param tradeSymbol
+	 * @param entry
 	 */
 	public void handleExecutedTradeEntry(final BitfinexExecutedTradeSymbol tradeSymbol,
 			final BitfinexExecutedTrade entry) {

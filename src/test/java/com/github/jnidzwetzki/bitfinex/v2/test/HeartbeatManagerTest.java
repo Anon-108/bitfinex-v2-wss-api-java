@@ -48,13 +48,13 @@ public class HeartbeatManagerTest {
 	@Test(timeout=30000)
 	public void testConnectWhenDisconnected() throws Exception {
 
-		// Events
-		// * Disconnect websocket from heartbeat
-		// * Disconnect from bitfinex API reconnect method
-		// * Reconnect on bitfinex api
+		// Events 活动
+		// * Disconnect websocket from heartbeat // * 断开 websocket 与心跳的连接
+		// * Disconnect from bitfinex API reconnect method // * 从bitfinex API重新连接方法断开
+ 		// * Reconnect on bitfinex api // * 在 bitfinex api 上重新连接
 		final CountDownLatch connectLatch = new CountDownLatch(3);
 
-		// Count down the latch on method call
+		// Count down the latch on method call // 倒计时方法调用的闩锁
 		final Answer<Void> answer = invocation -> {
 				connectLatch.countDown();
 				return null;
@@ -78,7 +78,7 @@ public class HeartbeatManagerTest {
 			heartbeatThread.start();
 			connectLatch.await();
 		} catch (Exception e) {
-			// Should not happen
+			// Should not happen // 不应该发生
 			throw e;
 		} finally {
 			heartbeatThread.interrupt();
@@ -86,7 +86,7 @@ public class HeartbeatManagerTest {
 	}
 
 	/**
-	 * Test the heartbeart handler
+	 * Test the heartbeart handler * 测试心跳处理器
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -99,7 +99,7 @@ public class HeartbeatManagerTest {
 	}
 
 	/**
-	 * Test the ticker freshness
+	 * Test the ticker freshness * 测试股票新鲜度
 	 */
 	@Test
 	public void testTickerFreshness1() {
@@ -108,7 +108,7 @@ public class HeartbeatManagerTest {
 	}
 
 	/**
-	 * Test the ticker freshness
+	 * Test the ticker freshness * 测试股票新鲜度
 	 */
 	@Test
 	public void testTickerFreshness2() {
@@ -118,7 +118,7 @@ public class HeartbeatManagerTest {
 	}
 
 	/**
-	 * Test the ticker freshness
+	 * Test the ticker freshness * 测试股票新鲜度
 	 */
 	@Test
 	public void testTickerFreshness3() {

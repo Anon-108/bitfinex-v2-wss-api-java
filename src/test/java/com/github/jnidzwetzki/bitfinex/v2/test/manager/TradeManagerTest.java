@@ -42,12 +42,14 @@ public class TradeManagerTest {
 
     /**
      * The delta for double compares
+     * * 双重比较的增量
      */
     private static final double DELTA = 0.001;
 
 
     /**
      * The API key of the connection
+     * * 连接的API密钥
      */
     private final static String API_KEY = "abc123";
 
@@ -61,6 +63,7 @@ public class TradeManagerTest {
 
     /**
      * Test the trade channel handler
+     * * 测试交易通道处理器
      *
      * @throws BitfinexClientException
      * @throws InterruptedException
@@ -90,6 +93,7 @@ public class TradeManagerTest {
 
     /**
      * Test the trade channel handler
+     * * 测试交易通道处理器
      *
      * @throws BitfinexClientException
      * @throws InterruptedException
@@ -124,6 +128,7 @@ public class TradeManagerTest {
 
     /**
      * Build a mocked bitfinex connection
+     * * 建立一个模拟的 bitfinex 连接
      *
      * @return
      */

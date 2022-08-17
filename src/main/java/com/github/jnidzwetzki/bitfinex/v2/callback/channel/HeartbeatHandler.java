@@ -46,7 +46,7 @@ public class HeartbeatHandler implements ChannelCallbackHandler {
 	 */
 	@Override
 	public void handleChannelData(final String action, final JSONArray jsonArray) throws BitfinexClientException {
-		logger.debug("Got connection heartbeat");
+		logger.debug("Got connection heartbeat 得到连接心跳");
 		heartbeatConsumer.accept(System.currentTimeMillis());
 	}
 

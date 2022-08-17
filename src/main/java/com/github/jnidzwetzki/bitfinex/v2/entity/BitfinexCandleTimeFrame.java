@@ -52,6 +52,7 @@ public enum BitfinexCandleTimeFrame {
 	
 	/**
 	 * Construct from symbol string
+	 * * 从符号字符串构造
 	 * @param symbolString
 	 * @return
 	 */
@@ -61,6 +62,6 @@ public enum BitfinexCandleTimeFrame {
 				return timeframe;
 			}
 		}
-		throw new IllegalArgumentException("Unable to find timeframe for: " + symbolString);
+		throw new IllegalArgumentException("Unable to find timeframe for 无法找到时间范围: " + symbolString);
 	}
 }

@@ -23,6 +23,7 @@ public class BitfinexExecutedTradeSymbol implements BitfinexStreamSymbol {
 	
 	/**
 	 * The currency pair
+	 * * 货币对
 	 */
 	private final BitfinexCurrencyPair currencyPair;
 
@@ -59,6 +60,7 @@ public class BitfinexExecutedTradeSymbol implements BitfinexStreamSymbol {
 	
 	/**
 	 * Build from bitfinex string
+	 * * 从 bitfinex 字符串构建
 	 * @param symbol
 	 * @return
 	 */
@@ -69,6 +71,7 @@ public class BitfinexExecutedTradeSymbol implements BitfinexStreamSymbol {
 
 	/**
 	 * Get the currency pair
+	 * * 获取货币对
 	 * @return
 	 */
 	public BitfinexCurrencyPair getCurrencyPair() {

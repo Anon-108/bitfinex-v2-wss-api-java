@@ -48,11 +48,13 @@ public class BitfinexExecutedTradesHandlerTest {
 
     /**
      * The delta for double compares
+     * * 双重比较的增量
      */
     private static final double DELTA = 0.001;
 
     /**
      * Test the parsing of one executed trade
+     * * 测试一笔已执行交易的解析
      *
      * @throws BitfinexClientException
      * @throws InterruptedException
@@ -86,6 +88,7 @@ public class BitfinexExecutedTradesHandlerTest {
 
     /**
      * Test the parsing of a executed trades snapshot
+     * * 测试已执行交易快照的解析
      *
      * @throws BitfinexClientException
      * @throws InterruptedException
@@ -116,7 +119,7 @@ public class BitfinexExecutedTradesHandlerTest {
                 Assert.assertEquals(-0.25, c.getAmount().doubleValue(), DELTA);
                 Assert.assertEquals(8175.8, c.getPrice().doubleValue(), DELTA);
             } else {
-                throw new IllegalArgumentException("Illegal call, expected 2 trades");
+                throw new IllegalArgumentException("Illegal call, expected 2 trades 非法调用，预计 2 笔交易");
             }
         });
 

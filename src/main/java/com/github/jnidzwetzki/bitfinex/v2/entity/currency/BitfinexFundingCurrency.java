@@ -21,6 +21,7 @@ public class BitfinexFundingCurrency implements BitfinexInstrument {
 	
 	/**
 	 * The funding currency
+	 * * 融资货币
 	 */
 	private final String currency;
 
@@ -30,6 +31,7 @@ public class BitfinexFundingCurrency implements BitfinexInstrument {
 	
 	/**
 	 * Get the currency
+	 * * 获取货币
 	 * @return
 	 */
 	public String getCurrency() {
@@ -38,6 +40,7 @@ public class BitfinexFundingCurrency implements BitfinexInstrument {
 	
 	/**
 	 * Convert to bitfinex string
+	 * * 转换为 bitfinex 字符串
 	 * @return
 	 */
 	@Override
@@ -50,7 +53,7 @@ public class BitfinexFundingCurrency implements BitfinexInstrument {
 	 */
 	public static BitfinexFundingCurrency fromSymbolString(final String string) {
 		if(! string.startsWith("f")) {
-			throw new IllegalArgumentException("This is not a funding currency symbol: " + string);
+			throw new IllegalArgumentException("This is not a funding currency symbol 这不是资金货币符号: " + string);
 		}
 		
 		final String currency = string.substring(1);

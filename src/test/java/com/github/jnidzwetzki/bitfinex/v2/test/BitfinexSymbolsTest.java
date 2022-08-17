@@ -27,6 +27,7 @@ public class BitfinexSymbolsTest {
 
 	/**
 	 * Are the default currencies loaded?
+	 * * 是否加载了默认货币？
 	 */
 	@Test
 	public void testDefaultCurrencyLoaded() {
@@ -37,6 +38,7 @@ public class BitfinexSymbolsTest {
 
 	/**
 	 * Test the creation of symbols
+	 * * 测试符号的创建
 	 * @throws BitfinexCommandException
 	 */
 	@Test
@@ -73,6 +75,7 @@ public class BitfinexSymbolsTest {
 	
 	/**
 	 * Test the creation of symbols
+	 * * 测试符号的创建
 	 * @throws BitfinexCommandException
 	 */
 	@Test(expected=IllegalArgumentException.class)
@@ -82,6 +85,7 @@ public class BitfinexSymbolsTest {
 	
 	/**
 	 * Test the funding symbol
+	 * * 测试资金符号
 	 */
 	@Test
 	public void testFundingSymbol() {
@@ -93,6 +97,7 @@ public class BitfinexSymbolsTest {
 	
 	/**
 	 * Test the funding currency
+	 * * 测试融资货币
 	 */
 	@Test
 	public void testFundingCurrency1() {
@@ -108,6 +113,7 @@ public class BitfinexSymbolsTest {
 	
 	/**
 	 * Test the funding currency
+	 * * 测试融资货币
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testFundingCurrency2() {

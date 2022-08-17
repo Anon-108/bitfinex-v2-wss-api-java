@@ -34,11 +34,13 @@ public class TestHelper {
 
 	/**
 	 * The API key of the connection
+	 * * 连接的API密钥
 	 */
 	public final static String API_KEY = "abc123";
 	
 	/**
 	 * Build a mocked bitfinex connection
+	 * * 建立一个模拟的 bitfinex 连接
 	 * @return
 	 */
 	public static BitfinexWebsocketClient buildMockedBitfinexConnection() {

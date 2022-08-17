@@ -30,8 +30,8 @@ public class OrderMultiCommand implements BitfinexOrderCommand {
     private final BitfinexOrderCommand[] commands;
 
     public OrderMultiCommand(final Collection<BitfinexOrderCommand> commands) {
-        Preconditions.checkArgument(!commands.isEmpty(), "Commands list cannot be empty!");
-        Preconditions.checkArgument(commands.size() <= 15, "Commands list cannot be bigger than 15!");
+        Preconditions.checkArgument(!commands.isEmpty(), "Commands list cannot be empty! 命令列表不能为空！");
+        Preconditions.checkArgument(commands.size() <= 15, "Commands list cannot be bigger than 15!命令列表不能大于 15！");
         this.commands = commands.toArray(new BitfinexOrderCommand[0]);
     }
 

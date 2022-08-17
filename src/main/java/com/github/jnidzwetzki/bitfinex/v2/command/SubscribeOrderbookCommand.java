@@ -27,7 +27,7 @@ import com.github.jnidzwetzki.bitfinex.v2.symbol.BitfinexStreamSymbol;
 public class SubscribeOrderbookCommand implements SubscribeCommand {
 
 	/**
-	 * The orderbook configuration
+	 * The orderbook configuration 订单簿配置
 	 */
 	private BitfinexOrderBookSymbol symbol;
 	

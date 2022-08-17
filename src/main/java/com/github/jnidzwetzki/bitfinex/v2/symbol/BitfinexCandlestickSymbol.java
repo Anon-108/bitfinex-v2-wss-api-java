@@ -24,11 +24,13 @@ public class BitfinexCandlestickSymbol implements BitfinexStreamSymbol {
 	
 	/**
 	 * The currency pair
+	 * * 货币对
 	 */
 	private final BitfinexCurrencyPair currencyPair;
 	
 	/**
 	 * The timeframe
+	 * * 时间范围
 	 */
 	private final BitfinexCandleTimeFrame timeframe;
 
@@ -47,6 +49,7 @@ public class BitfinexCandlestickSymbol implements BitfinexStreamSymbol {
 	
 	/**
 	 * To Bitfinex symbol string
+	 * * 到 Bitfinex 符号字符串
 	 * @return
 	 */
 	public String toBifinexCandlestickString() {
@@ -55,6 +58,7 @@ public class BitfinexCandlestickSymbol implements BitfinexStreamSymbol {
 	
 	/**
 	 * Construct from Bitfinex string
+	 * * 从 Bitfinex 字符串构造
 	 * @param symbol
 	 * @return
 	 */

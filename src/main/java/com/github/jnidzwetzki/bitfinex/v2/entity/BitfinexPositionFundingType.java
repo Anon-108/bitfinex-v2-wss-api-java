@@ -35,6 +35,6 @@ public enum BitfinexPositionFundingType {
                 return type;
             }
         }
-        throw new IllegalArgumentException("Type not recognized: " + value);
+        throw new IllegalArgumentException("Type not recognized 无法识别类型: " + value);
     }
 }

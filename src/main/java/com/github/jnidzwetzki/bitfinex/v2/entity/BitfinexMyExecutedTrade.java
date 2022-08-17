@@ -26,48 +26,58 @@ public class BitfinexMyExecutedTrade extends BitfinexExecutedTrade {
 
 	/**
 	 * order which triggered this trade
+	 * * 触发此交易的订单
 	 */
 	private Long orderId;
 
 	/**
 	 * currency pair symbol of trade
+	 * * 交易的货币对符号
 	 */
 	private BitfinexCurrencyPair currencyPair;
 
 	/**
 	 * order type that triggered this trade
+	 * * 触发此交易的订单类型
 	 */
 	private BitfinexOrderType orderType;
 
 	/**
 	 * orderbook price of the order that triggered this trade
+	 * * 触发该交易的订单的订单簿价格
 	 */
 	private BigDecimal orderPrice;
 
 	/**
 	 * is maker or taker
+	 * * 是制造者或接受者
 	 */
 	private boolean maker;
 
 	/**
 	 * received only in 'TU' event
 	 * charged fee for this trade
+	 * 仅在 'TU' 事件中收到 收取此交易的费用
 	 */
 	private BigDecimal fee;
 
 	/**
 	 * received only in 'TU' event
 	 * currency used by fee
+	 * 仅在“TU”事件中收到
+	 * * 费用使用的货币
 	 */
 	private String feeCurrency;
 
 	/**
 	 * true if this trade event is updating one
+	 * * 如果此交易事件正在更新，则为真
 	 */
 	private boolean update;
 
 	/**
 	 * api key which received this info
+	 * * 收到此信息的 api 密钥
 	 */
 	private String apiKey;
 

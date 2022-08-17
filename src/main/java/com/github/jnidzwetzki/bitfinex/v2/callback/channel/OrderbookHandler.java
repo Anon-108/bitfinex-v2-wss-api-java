@@ -48,11 +48,12 @@ public class OrderbookHandler implements ChannelCallbackHandler {
      */
     @Override
     public void handleChannelData(final String action, final JSONArray jsonArray) throws BitfinexClientException {
-        // Example: [13182,1,-0.1]
+        // Example: [13182,1,-0.1] 示例：[13182,1,-0.1]
         try {
             final List<BitfinexOrderBookEntry> entries = new ArrayList<>();
 
             // Snapshots contain multiple Orderbook entries, updates only one
+            // 快照包含多个订单簿条目，只更新一个
             if (jsonArray.get(0) instanceof JSONArray) {
                 for (int pos = 0; pos < jsonArray.length(); pos++) {
                     final JSONArray parts = jsonArray.getJSONArray(pos);

@@ -84,106 +84,127 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * The bitfinex api
+	 * * bitfinex api
 	 */
 	public final static String BITFINEX_URI = "wss://api.bitfinex.com/ws/2";
 
 	/**
 	 * The account info channel id
+	 * * 账户信息通道id
 	 */
 	public final static int ACCCOUNT_INFO_CHANNEL = 0;
 
 	/**
 	 * broker configuration
+	 * * 代理配置
 	 */
 	private final BitfinexWebsocketConfiguration configuration;
 
 	/**
 	 * callback registry
+	 * * 回调注册表
 	 */
 	private final BitfinexApiCallbackRegistry callbackRegistry;
 
 	/**
 	 * The websocket endpoint
+	 * * websocket 端点
 	 */
 	private WebsocketClientEndpoint websocketEndpoint;
 
 	/**
 	 * The channel map
+	 * * 频道地图
 	 */
 	private final Map<Integer, ChannelCallbackHandler> channelIdToHandlerMap;
 
 	/**
 	 * The tick manager
+	 * * 报价管理器
 	 */
 	private final QuoteManager quoteManager;
 
 	/**
 	 * The trading orderbook manager
+	 * * 交易订单管理器
 	 */
 	private final OrderbookManager orderbookManager;
 
 	/**
 	 * The trading RAW orderbook manager
+	 * * 交易 RAW 订单簿管理器
 	 */
 	private final RawOrderbookManager rawOrderbookManager;
 
 	/**
 	 * The position manager
+	 * * 职位经理
 	 */
 	private final PositionManager positionManager;
 
 	/**
 	 * The order manager
+	 * * 订单管理器
 	 */
 	private final OrderManager orderManager;
 
 	/**
 	 * The trade manager
+	 * * 贸易经理
 	 */
 	private final TradeManager tradeManager;
 
 	/**
 	 * The wallet manager
+	 * * 钱包管理器
 	 */
 	private final WalletManager walletManager;
 
 	/**
 	 * The connection feature manager
+	 * * 连接功能管理器
 	 */
 	private final ConnectionFeatureManager connectionFeatureManager;
 
 	/**
 	 * The last heartbeat value
+	 * * 最后的心跳值
 	 */
 	private final AtomicLong lastHeartbeat;
 
 	/**
 	 * The heartbeat thread
+	 * * 心跳线程
 	 */
 	private Thread heartbeatThread;
 
 	/**
 	 * The permissions of the connection
+	 * * 连接的权限
 	 */
 	private BitfinexApiKeyPermissions permissions;
 
 	/**
 	 * Is the connection authenticated?
+	 * * 连接是否经过身份验证？
 	 */
 	private boolean authenticated;
 
 	/**
 	 * The command callbacks
+	 * * 命令回调
 	 */
 	private Map<String, CommandCallbackHandler> commandCallbacks;
 
 	/**
 	 * The sequence number auditor
+	 * * 序列号审计员
 	 */
 	private final SequenceNumberAuditor sequenceNumberAuditor;
 
 	/**
 	 * Will not notify on connection state change
+	 * * 不会通知连接状态变化
 	 */
 	private final boolean skipConnectionStateNotification;
 
@@ -212,6 +233,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Setup the command callbacks
+	 * * 设置命令回调
 	 */
 	private void setupCommandCallbacks() {
 		commandCallbacks = new HashMap<>();
@@ -229,7 +251,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 				channelIdToHandlerMap.put(channelId, channelCallbackHandler);
 				channelIdToHandlerMap.notifyAll();
 			}
-			logger.debug("subscribed: {}", symbol);
+			logger.debug("subscribed 订阅: {}", symbol);
 			callbackRegistry.acceptSubscribeChannelEvent(symbol);
 		});
 		commandCallbacks.put("subscribed", subscribed);
@@ -243,15 +265,15 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			}
 			if (removed != null) {
 				callbackRegistry.acceptUnsubscribeChannelEvent(removed.getSymbol());
-				logger.debug("unsubscribed: {}", removed.getSymbol());
+				logger.debug("unsubscribed 退订: {}", removed.getSymbol());
 			}
 
 		});
-		commandCallbacks.put("unsubscribed", unsubscribed);
+		commandCallbacks.put("unsubscribed 退订", unsubscribed);
 
 		final AuthCallback auth = new AuthCallback();
 		auth.onAuthenticationSuccessEvent(permissions -> {
-		    logger.info("authentication succeeded for key {}", configuration.getApiKey());
+		    logger.info("authentication succeeded for key 密钥认证成功 {}", configuration.getApiKey());
 			final BitfinexAccountSymbol symbol = BitfinexSymbols.account(permissions, configuration.getApiKey());
 			final AccountInfoHandler handler = new AccountInfoHandler(ACCCOUNT_INFO_CHANNEL, symbol);
 			handler.onHeartbeatEvent(timestamp -> this.updateConnectionHeartbeat());
@@ -267,7 +289,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			callbackRegistry.acceptConnectionStateChange(BitfinexConnectionStateEnum.AUTHENTICATION_SUCCESS);
 		});
 		auth.onAuthenticationFailedEvent(permissions -> {
-            logger.info("authentication failed for key {}", configuration.getApiKey());
+            logger.info("authentication failed for key 密钥认证失败 {}", configuration.getApiKey());
             final BitfinexAccountSymbol symbol = BitfinexSymbols.account(permissions, configuration.getApiKey());
 			callbackRegistry.acceptAuthenticationFailedEvent(symbol);
 			callbackRegistry.acceptConnectionStateChange(BitfinexConnectionStateEnum.AUTHENTICATION_FAILED);
@@ -282,11 +304,12 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Open the connection
+	 * * 打开连接
 	 * @throws BitfinexClientException
 	 */
 	@Override
 	public void connect() throws BitfinexClientException {
-		logger.debug("connect() called");
+		logger.debug("connect() called 调用连接（）");
 		Closeable authSuccessEventCallback = null;
 		Closeable authFailedCallback = null;
 		Closeable positionInitCallback = null;
@@ -347,6 +370,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Setup the default info handler - can be replaced in onAuthenticationSuccessEvent
+	 * * 设置默认信息处理程序 - 可以在 onAuthenticationSuccessEvent 中替换
 	 */
 	private void setupDefaultAccountInfoHandler() {
 		final BitfinexAccountSymbol accountSymbol = BitfinexSymbols.account(BitfinexApiKeyPermissions.NO_PERMISSIONS);
@@ -357,12 +381,13 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Disconnect the websocket
+	 * * 断开网络套接字
 	 */
 	@Override
 	public void close() {
 		try {
 			callbackRegistry.acceptConnectionStateChange(BitfinexConnectionStateEnum.DISCONNECTION_INIT);
-			logger.debug("close() called");
+			logger.debug("close() called 关闭（）调用");
 			if (heartbeatThread != null) {
 				heartbeatThread.interrupt();
 				heartbeatThread = null;
@@ -381,6 +406,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Send a new API command
+	 * * 发送新的 API 命令
 	 * @param command
 	 */
 	@Override
@@ -391,26 +417,28 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 				aware.setResolver(symbol -> {
 					final Integer channelId = getChannelForSymbol(symbol);
 					if (channelId == null) {
-						throw new IllegalArgumentException("Unknown symbol: " + symbol);
+						throw new IllegalArgumentException("Unknown symbol 未知符号: " + symbol);
 					}
 					return channelId;
 				});
 			}
 			final String json = command.getCommand(this);
-            logger.debug("Sent: {}", command);
+            logger.debug("Sent 发送: {}", command);
 			websocketEndpoint.sendMessage(json);
 		} catch (final BitfinexCommandException e) {
-			logger.error("Got Exception while sending command", e);
+			logger.error("Got Exception while sending command 发送命令时出现异常", e);
 		}
 	}
 
 	/**
 	 * Perform a reconnect
+	 * * 执行重新连接
 	 * @return true if reconnect succeeded, false otherwise
+	 * * @return 如果重新连接成功，则返回 true，否则返回 false
 	 */
 	@Override
 	public synchronized boolean reconnect() {
-		logger.debug("reconnect() called");
+		logger.debug("reconnect() called 重新连接（）调用");
 		Closeable authSuccessEventCallback = null;
 		Closeable authFailedCallback = null;
 		Closeable positionInitCallback = null;
@@ -426,6 +454,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			connectionFeatureManager.setActiveConnectionFeatures(0);
 
 			// Invalidate old data
+			// 使旧数据无效
 			quoteManager.invalidateTickerHeartbeat();
 			orderManager.clear();
 			positionManager.clear();
@@ -450,6 +479,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			orderInitCallback = callbackRegistry.onMySubmittedOrderEvent((a, o) -> connectionReadyLatch.countDown());
 
 			// Reset account info handler
+			// 重置帐户信息处理程序
 			setupDefaultAccountInfoHandler();
 
 			websocketEndpoint.connect();
@@ -464,7 +494,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			callbackRegistry.acceptConnectionStateChange(BitfinexConnectionStateEnum.RECONNECTION_SUCCESS);
 			return true;
 		} catch (final Exception e) {
-			logger.error("Got exception while reconnect", e);
+			logger.error("Got exception while reconnect 重新连接时出现异常", e);
 			websocketEndpoint.close();
 			callbackRegistry.acceptConnectionStateChange(BitfinexConnectionStateEnum.RECONNECTION_FAILED);
 			return false;
@@ -502,12 +532,13 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			handler.onExecutedTradeEvent(callbackRegistry::acceptExecutedTradeEvent);
 			return handler;
 		} else {
-			throw new IllegalArgumentException("Cannot handle symbol: " + symbol);
+			throw new IllegalArgumentException("Cannot handle symbol 无法处理符号: " + symbol);
 		}
 	}
 
 	/**
 	 * Execute the authentication and wait until the socket is ready
+	 * * 执行认证，等待socket准备好
 	 * @throws InterruptedException
 	 * @throws BitfinexClientException
 	 */
@@ -516,31 +547,33 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			return;
 		}
 		sendCommand(new AuthCommand(configuration.getAuthNonceProducer()));
-		logger.debug("Waiting for connection ready events");
+		logger.debug("Waiting for connection ready events 等待连接就绪事件");
 		latch.await(10, TimeUnit.SECONDS);
 
 		if (!authenticated) {
-			throw new BitfinexClientException("Unable to perform authentication, permissions are: " + permissions);
+			throw new BitfinexClientException("Unable to perform authentication, permissions are 无法执行身份验证，权限为: " + permissions);
 		}
 	}
 
 	/**
 	 * We received a websocket callback
+	 * * 我们收到了一个 websocket 回调
 	 * @param message
 	 */
 	private void websocketCallback(final String message) {
-		logger.debug("Recv: {}", message);
+		logger.debug("Recv 接收: {}", message);
 		if(message.startsWith("{")) {
 			handleCommandCallback(message);
 		} else if(message.startsWith("[")) {
 			handleChannelCallback(message);
 		} else {
-			logger.error("Got unknown callback: {}", message);
+			logger.error("Got unknown callback 收到未知回调: {}", message);
 		}
 	}
 
 	/**
 	 * Handle a command callback
+	 * * 处理命令回调
 	 */
 	private void handleCommandCallback(final String message) {
 		// JSON callback
@@ -549,13 +582,13 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 		final CommandCallbackHandler commandCallbackHandler = commandCallbacks.get(eventType);
 		if( commandCallbackHandler == null ) {
-			logger.error("Unknown event: {}", message);
+			logger.error("Unknown event 未知事件: {}", message);
 			return;
 		}
 		try {
 			commandCallbackHandler.handleChannelData(jsonObject);
 		} catch (final BitfinexClientException e) {
-			logger.error("Got an exception while handling callback");
+			logger.error("Got an exception while handling callback 处理回调时出现异常");
 		}
 	}
 
@@ -565,13 +598,16 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Handle a channel callback
+	 * * 处理频道回调
 	 * @param message
 	 */
 	private void handleChannelCallback(final String message) {
 		// Channel callback
+		// 通道回调
 		updateConnectionHeartbeat();
 
 		// JSON callback
+		// JSON 回调
 		final JSONArray jsonArray = new JSONArray(new JSONTokener(message));
 
 		if(connectionFeatureManager.isConnectionFeatureActive(BitfinexConnectionFeature.SEQ_ALL)) {
@@ -591,12 +627,13 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 		if (Objects.equals(action, "hb")) {
 			if (channelCallbackHandler == null) {
 				// Skipping "hb" if it came before "subscribed" event
+				// 如果“hb”在“subscribed”事件之前，则跳过它
 				return;
 			}
 			quoteManager.updateChannelHeartbeat(channelCallbackHandler.getSymbol());
 		}
 		if (channelCallbackHandler == null) {
-			logger.error("Unable to determine symbol for channel {} / data is {} ", channel, jsonArray);
+			logger.error("Unable to determine symbol for channel 无法确定频道的符号 {} / data is 数据是 {} ", channel, jsonArray);
 			reconnect();
 			return;
 		}
@@ -607,12 +644,13 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			
 			channelCallbackHandler.handleChannelData(action, payload);
 		} catch (final BitfinexClientException e) {
-			logger.error("Got exception while handling callback", e);
+			logger.error("Got exception while handling callback 处理回调时出现异常", e);
 		}
 	}
 
 	/**
 	 * Find the channel for the given symbol
+	 * * 查找给定符号的通道
 	 * @param symbol
 	 * @return
 	 */
@@ -628,6 +666,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Re-subscribe the old ticker
+	 * * 重新订阅旧代码
 	 * @return
 	 * @throws InterruptedException
 	 * @throws BitfinexClientException
@@ -658,7 +697,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 			} else if(symbol instanceof BitfinexAccountSymbol) {
 				// This symbol does not need to be resubscribed
 			} else {
-				logger.error("Unknown stream symbol: {}", symbol);
+				logger.error("Unknown stream symbol 未知的流符号: {}", symbol);
 			}
 		}
 
@@ -667,6 +706,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Wait for the successful channel re-subscription
+	 * * 等待频道重新订阅成功
 	 * @param oldChannelIdSymbolMap
 	 * @return
 	 * @throws BitfinexClientException
@@ -677,7 +717,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 		final Stopwatch stopwatch = Stopwatch.createStarted();
 		final long MAX_WAIT_TIME_IN_MS = TimeUnit.MINUTES.toMillis(3);
-		logger.info("Waiting for streams to resubscribe (max wait time {} msec)", MAX_WAIT_TIME_IN_MS);
+		logger.info("Waiting for streams to resubscribe (max wait time  等待流重新订阅（最大等待时间 {} msec 毫秒)", MAX_WAIT_TIME_IN_MS);
 
 		synchronized (channelIdToHandlerMap) {
 
@@ -685,6 +725,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 				if(stopwatch.elapsed(TimeUnit.MILLISECONDS) > MAX_WAIT_TIME_IN_MS) {
 					// Raise BitfinexClientException
+					// 引发 BitfinexClientException
 					handleResubscribeFailed(oldChannelIdSymbolMap);
 				}
 
@@ -696,6 +737,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 
 	/**
 	 * Handle channel re-subscribe failed
+	 * * 处理频道重新订阅失败
 	 *
 	 * @param oldChannelIdSymbolMap
 	 * @throws BitfinexClientException
@@ -708,34 +750,39 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 		final int subscribedSymbols = channelIdToHandlerMap.size();
 
 		// Unsubscribe old channels before the symbol map is restored
+		// 在符号图恢复之前取消订阅旧频道
 		// otherwise we will get a lot of unknown symbol messages
+		// 否则我们会得到很多未知的符号消息
 		unsubscribeAllChannels();
 
 		// Restore old symbol map for reconnect
+		// 恢复旧符号映射以重新连接
 		synchronized (channelIdToHandlerMap) {
 			channelIdToHandlerMap.clear();
 			channelIdToHandlerMap.putAll(oldChannelIdSymbolMap);
 		}
 
-		throw new BitfinexClientException("Subscription of ticker failed: got only "
-				+ subscribedSymbols + " of " + requiredSymbols + " symbols subscribed");
+		throw new BitfinexClientException("Subscription of ticker failed: got only  订阅代码失败：只得到"
+				+ subscribedSymbols + " of 的 " + requiredSymbols + " symbols subscribed 订阅的符号");
 	}
 
 	/**
 	 * Wait for unsubscription complete
+	 * * 等待退订完成
 	 */
 	@Override
 	public boolean unsubscribeAllChannels() {
         final Collection<BitfinexStreamSymbol> channels = getSubscribedChannels();
         final int channelsToUnsubscribe = channels.size();
 
-        logger.debug("Calling unsubscribe for {} channels", channelsToUnsubscribe);
+        logger.debug("Calling unsubscribe for 取消订阅 {} channels 渠道", channelsToUnsubscribe);
 		final CountDownLatch countDownLatch = new CountDownLatch(channelsToUnsubscribe);
 
         try (Closeable c = callbackRegistry.onUnsubscribeChannelEvent(s -> countDownLatch.countDown())) {
             channels.forEach(symbol -> sendCommand(new UnsubscribeChannelCommand(symbol)));
 
             // Await the unsubscription
+			// 等待退订
             countDownLatch.await(30, TimeUnit.SECONDS);
 
             return true;
@@ -788,6 +835,7 @@ public class SimpleBitfinexApiBroker implements Closeable, BitfinexWebsocketClie
 	}
 
 	// managers getters
+	// 管理者吸气剂
 
 	@Override
 	public QuoteManager getQuoteManager() {

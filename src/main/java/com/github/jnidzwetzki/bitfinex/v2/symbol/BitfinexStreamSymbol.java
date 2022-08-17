@@ -18,5 +18,5 @@
 package com.github.jnidzwetzki.bitfinex.v2.symbol;
 
 public interface BitfinexStreamSymbol {
-	// Tagging interface
+	// Tagging interface // 标记接口
 }

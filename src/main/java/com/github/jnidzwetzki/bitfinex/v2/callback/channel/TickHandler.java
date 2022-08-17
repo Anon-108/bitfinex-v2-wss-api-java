@@ -59,22 +59,23 @@ public class TickHandler implements ChannelCallbackHandler {
     }
 
     private BitfinexTick jsonToBitfinexTick(final JSONArray jsonArray) {
-        final BigDecimal bid = jsonArray.getBigDecimal(0); // 0 = BID
-        final BigDecimal bidSize = jsonArray.getBigDecimal(1);//  1 = BID SIZE
-        final BigDecimal ask = jsonArray.getBigDecimal(2); // 2 = ASK
-        final BigDecimal askSize = jsonArray.getBigDecimal(3);//  3 = ASK SIZE
-        final BigDecimal dailyChange = jsonArray.getBigDecimal(4);//  4 = Daily Change
-        final BigDecimal dailyChangePerc = jsonArray.getBigDecimal(5);// 5  = Daily Change %
-        final BigDecimal price = jsonArray.getBigDecimal(6);//  6 = Last Price
-        final BigDecimal volume = jsonArray.getBigDecimal(7); // 7 = Volume
-        final BigDecimal high = jsonArray.getBigDecimal(8); // 8 = High
-        final BigDecimal low = jsonArray.getBigDecimal(9); // 9 = Low
+        final BigDecimal bid = jsonArray.getBigDecimal(0); // 0 = BID 0 = 出价
+        final BigDecimal bidSize = jsonArray.getBigDecimal(1);//  1 = BID SIZE 1 = 出价大小
+        final BigDecimal ask = jsonArray.getBigDecimal(2); // 2 = ASK 2 = 询问
+        final BigDecimal askSize = jsonArray.getBigDecimal(3);//  3 = ASK SIZE 3 = 询价
+        final BigDecimal dailyChange = jsonArray.getBigDecimal(4);//  4 = Daily Change 4 = 每日变化
+        final BigDecimal dailyChangePerc = jsonArray.getBigDecimal(5);// 5  = Daily Change % 5 = 每日变化百分比
+        final BigDecimal price = jsonArray.getBigDecimal(6);//  6 = Last Price 6 = 最后价格
+        final BigDecimal volume = jsonArray.getBigDecimal(7); // 7 = Volume 7 = 体积/卷
+        final BigDecimal high = jsonArray.getBigDecimal(8); // 8 = High 高
+        final BigDecimal low = jsonArray.getBigDecimal(9); // 9 = Low 低
 
         return new BitfinexTick(bid, bidSize, ask, askSize, dailyChange, dailyChangePerc, price, volume, high, low);
     }
 
     /**
      * bitfinex tick event consumer
+     * * bitfinex 钩子事件消费者
      *
      * @param consumer of event
      */

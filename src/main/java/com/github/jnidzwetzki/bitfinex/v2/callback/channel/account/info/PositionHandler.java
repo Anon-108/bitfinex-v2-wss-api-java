@@ -54,24 +54,24 @@ public class PositionHandler implements ChannelCallbackHandler {
      */
     @Override
     public void handleChannelData(final String action, final JSONArray payload) throws BitfinexClientException {
-        logger.info("Got position callback {}", payload.toString());
+        logger.info("Got position callback  得到位置回调{}", payload.toString());
 
         ArrayList<BitfinexPosition> positions = Lists.newArrayList();
-        // No positions active
+        // No positions active 没有有效的仓位
         if (payload.isEmpty()) {
             positionConsumer.accept(symbol, positions);
             return;
         }
 
         if (payload.get(0) instanceof JSONArray) {
-            // snapshot
+            // snapshot 快照
             for (int orderPos = 0; orderPos < payload.length(); orderPos++) {
                 final JSONArray orderArray = payload.getJSONArray(orderPos);
                 BitfinexPosition position = jsonArrayToPosition(orderArray);
                 positions.add(position);
             }
         } else {
-            // update
+            // update 更新
             BitfinexPosition position = jsonArrayToPosition(payload);
             positions.add(position);
         }
@@ -108,7 +108,8 @@ public class PositionHandler implements ChannelCallbackHandler {
 
     /**
      * positions event consumer
-     * @param consumer of event
+     * 定位事件消费者
+     * @param consumer of event 事件消费者
      */
     public void onPositionsEvent(BiConsumer<BitfinexAccountSymbol, Collection<BitfinexPosition>> consumer) {
         this.positionConsumer = consumer;

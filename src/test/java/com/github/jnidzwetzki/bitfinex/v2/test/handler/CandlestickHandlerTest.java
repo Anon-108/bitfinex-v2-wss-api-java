@@ -51,11 +51,13 @@ public class CandlestickHandlerTest {
 
 	/**
 	 * The delta for double compares
+	 * * 双重比较的增量
 	 */
 	private static final double DELTA = 0.001;
 
 	/**
 	 * Test the parsing of one candlestick
+	 * * 测试一根烛台的解析
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -96,6 +98,7 @@ public class CandlestickHandlerTest {
 	
 	/**
 	 * Test the parsing of a candlestick snapshot
+	 * * 测试烛台快照的解析
 	 * @throws BitfinexClientException
 	 */
 	@Test
@@ -132,7 +135,7 @@ public class CandlestickHandlerTest {
 				Assert.assertEquals(15890, c.getLow().doubleValue(), DELTA);
 				Assert.assertEquals(1137.180342268, c.getVolume().get().doubleValue(), DELTA);
 			} else {
-				throw new IllegalArgumentException("Illegal call, expected 2 candlesticks");
+				throw new IllegalArgumentException("Illegal call, expected 2 candlesticks 非法调用，预计 2 根烛台");
 			}
 		});
 						
@@ -145,6 +148,7 @@ public class CandlestickHandlerTest {
 	
 	/**
 	 * Test the symbol encoding and decoding
+	 * * 测试符号编码和解码
 	 */
 	@Test
 	public void testCandlestickSymbolEncoding1() {
@@ -170,6 +174,7 @@ public class CandlestickHandlerTest {
 		
 	/**
 	 * Test the symbol encoding and decoding
+	 * * 测试符号编码和解码
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testCandlestickSymbolEncoding2() {
@@ -179,6 +184,7 @@ public class CandlestickHandlerTest {
 	
 	/**
 	 * Test the symbol encoding and decoding
+	 * * 测试符号编码和解码
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public void testCandlestickSymbolEncoding3() {

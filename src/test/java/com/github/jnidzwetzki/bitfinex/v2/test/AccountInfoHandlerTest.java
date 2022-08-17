@@ -38,13 +38,13 @@ public class AccountInfoHandlerTest {
 		Assert.assertEquals(0, accountInfoHandler.getChannelId());
 		Assert.assertEquals(symbol, accountInfoHandler.getSymbol());
 		
-		// Default handler
+		// Default handler // 默认处理程序
 		accountInfoHandler.handleChannelData("hb", new JSONArray());
 		
-		// Error handler
+		// Error handler // 错误处理程序
 		accountInfoHandler.handleChannelData("hb", new JSONArray("[ERROR]"));
 
-		// Custom handler
+		// Custom handler // 自定义处理程序
 		final CountDownLatch hbLatch = new CountDownLatch(1);
 		accountInfoHandler.onHeartbeatEvent((h) -> hbLatch.countDown());
 		accountInfoHandler.handleChannelData("hb", new JSONArray());

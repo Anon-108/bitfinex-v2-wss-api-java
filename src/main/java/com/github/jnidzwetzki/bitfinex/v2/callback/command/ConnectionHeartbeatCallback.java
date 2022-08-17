@@ -36,8 +36,8 @@ public class ConnectionHeartbeatCallback implements CommandCallbackHandler {
 	}
 
 	/**
-	 * heartbeat event consumer
-	 * @param consumer of event
+	 * heartbeat event consumer 心跳事件消费者
+	 * @param consumer of event 事件消费者
 	 */
 	public void onHeartbeatEvent(Consumer<Long> consumer) {
 		this.heartbeatConsumer = consumer;

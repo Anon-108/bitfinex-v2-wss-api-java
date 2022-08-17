@@ -38,6 +38,7 @@ public class BitfinexTickTest {
 	
 	/**
 	 * The double test delta
+	 * * 双重测试三角洲
 	 */
 	private final static double DELTA = 0.0001;
 

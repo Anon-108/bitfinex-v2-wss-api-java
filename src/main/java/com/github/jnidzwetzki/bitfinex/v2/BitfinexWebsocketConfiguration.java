@@ -28,57 +28,69 @@ public class BitfinexWebsocketConfiguration {
 
     /**
      * api key
+     * * Opi 键
      */
     private String apiKey;
 
     /**
      * api secret
+     * * api 秘密
      */
     private String apiSecret;
 
     /**
      * false if authentication should be skipped
+     * * 如果应跳过身份验证，则为 false
      */
     private boolean authenticationEnabled = false;
 
     /**
      * false if heartbeat thread should not be running
+     * * false 如果心跳线程不应该运行
      */
     private boolean heartbeatThreadActive = true;
 
     /**
      * false if deadman switch should not be active
+     * * 如果死机开关不应该处于活动状态，则为 false
      */
     private boolean deadmanSwitchActive = false;
 
     /**
      * false if managers should not be active
+     * * 如果经理不应该处于活动状态，则为 false
      */
     private boolean managersActive = true;
 
     /**
      * authentication nonce producer
+     * * 认证随机数生产者
      */
     private Supplier<String> authNonceProducer = AuthCommand.AUTH_NONCE_PRODUCER_TIMESTAMP;
 
     /**
      * executor service used by managers
+     * * 管理者使用的执行器服务
      */
     private ExecutorService executorService = MoreExecutors.newDirectExecutorService();
 
     /**
      * delay in millis used by {@link PooledBitfinexApiBroker}.
+     * * {@link PooledBitfinexApiBroker} 使用的毫秒延迟。
      * Server will throw 429 on #connect() if too low.
+     * * 如果太低，服务器将在 #connect() 上抛出 429。
      */
     private int connectionEstablishingDelay = 7_500;
     
     /**
 	 * The error handling policy
+     * * 错误处理策略
 	 */
 	private ErrorPolicy errorPolicy = ErrorPolicy.LOG_ONLY;
 
     /**
      * automatically tries to reconnect if connection is lost
+     * * 如果连接丢失，自动尝试重新连接
      */
     private boolean autoReconnect = true;
 

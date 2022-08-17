@@ -34,16 +34,19 @@ public class WalletManager extends AbstractManager {
 
 	/**
 	 * WalletTable aggregator - key(Wallet-Type, Currency) = Wallet
+	 * * WalletTable 聚合器 - key(Wallet-Type, Currency) = Wallet
 	 */
 	private final Table<BitfinexWallet.Type, String, BitfinexWallet> walletTable;
 
 	/**
 	 * Value of assets under management (not including losses/profits)
+	 * * 管理资产的价值（不包括亏损/利润）
 	 */
 	private BigDecimal assetsUnderManagement = BigDecimal.ZERO;
 
 	/**
 	 * Value of assets under management (including losses/profits)
+	 * * 管理资产的价值（包括亏损/利润）
 	 */
 	private BigDecimal assetsUnderManagementNet  = BigDecimal.ZERO;
 
@@ -69,6 +72,7 @@ public class WalletManager extends AbstractManager {
 
 	/**
 	 * Get all wallets
+	 * * 获取所有钱包
 	 * @return
 	 * @throws BitfinexClientException
 	 */
@@ -83,6 +87,7 @@ public class WalletManager extends AbstractManager {
 
 	/**
 	 * Get all wallets
+	 * * 获取所有钱包
 	 * @return
 	 * @throws BitfinexClientException
 	 */
@@ -92,16 +97,19 @@ public class WalletManager extends AbstractManager {
 
 	/**
 	 * Throw a new exception if called on a unauthenticated connection
+	 * * 如果在未经身份验证的连接上调用，则抛出一个新异常
 	 * @throws BitfinexClientException
 	 */
 	private void throwExceptionIfUnauthenticated() throws BitfinexClientException {
 		if(! client.isAuthenticated()) {
-			throw new BitfinexClientException("Unable to perform operation on an unauthenticated connection");
+			throw new BitfinexClientException("Unable to perform operation on an unauthenticated connection" +
+					"无法对未经身份验证的连接执行操作");
 		}
 	}
 
 	/**
 	 * Calculate the wallet margin balance for the given currency (e.g., BTC)
+	 * * 计算给定货币（例如 BTC）的钱包保证金余额
 	 *
 	 * @param symbol
 	 * @throws BitfinexClientException
@@ -114,6 +122,7 @@ public class WalletManager extends AbstractManager {
 
 	/**
 	 * Calculate the wallet funding balance for the given currency (e.g., BTC)
+	 * * 计算给定货币的钱包资金余额（例如，BTC）
 	 *
 	 * @param symbol
 	 * @throws BitfinexClientException
@@ -126,7 +135,8 @@ public class WalletManager extends AbstractManager {
 
 	/**
 	 * Total Assets Under Management for associated account
-	 * @return assets under management
+	 * * 关联账户的总资产管理
+	 * @return assets under management 管理资产
 	 */
 	public BigDecimal getAssetsUnderManagement() {
 		return assetsUnderManagement;
@@ -134,7 +144,9 @@ public class WalletManager extends AbstractManager {
 
 	/**
 	 * Net Assets Under Management for associated account
+	 * * 关联账户管理的净资产
 	 * @return assets under management net
+	 * 管理资产净额
 	 */
 	public BigDecimal getAssetsUnderManagementNet() {
 		return assetsUnderManagementNet;

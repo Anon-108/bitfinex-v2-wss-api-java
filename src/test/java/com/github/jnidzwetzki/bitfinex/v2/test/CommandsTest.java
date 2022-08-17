@@ -52,6 +52,7 @@ public class CommandsTest {
 
 	/**
 	 * Call all commands and check for exception
+	 * * 调用所有命令并检查异常
 	 * @throws BitfinexCommandException
 	 */
 	@Test
@@ -102,6 +103,7 @@ public class CommandsTest {
 
 	/**
 	 * Test the order command
+	 * * 测试下单命令
 	 * @throws BitfinexCommandException
 	 */
 	@Test
@@ -147,11 +149,11 @@ public class CommandsTest {
 		OrderCancelGroupCommand c3 = new OrderCancelGroupCommand(3);
 		OrderCancelAllCommand c4 = new OrderCancelAllCommand();
 
-        // when
+        // when 什么时候
 		OrderMultiCommand multiCommand = new OrderMultiCommand(Lists.newArrayList(c1, c2, c3, c4));
 		String command = multiCommand.getCommand(null);
 
-		// then
+		// then 然后
 		Assert.assertEquals("[0, \"ox_multi\", null, [[\"oc\", {\"id\":1}],[\"on\", {\"symbol\":\"tBTCUSD\",\"amount\":\"2.0\",\"gid\":4,\"price\":\"12.0\",\"flags\":64,\"price_aux_limit\":\"23.0\",\"type\":\"EXCHANGE STOP\",\"price_trailing\":\"23.0\",\"cid\":100}],[\"oc_multi\", {\"gid\":[3]}],[\"oc_multi\", {\"all\": 1}]]]", command);
 	}
 

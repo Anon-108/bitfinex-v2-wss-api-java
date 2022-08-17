@@ -28,7 +28,7 @@ public class DoNothingCommandCallback implements CommandCallbackHandler {
 	 */
 	@Override
 	public void handleChannelData(final JSONObject jsonObject) throws BitfinexClientException {
-		// Do nothing
+		// Do nothing // 没做什么
 	}
 
 }

@@ -48,6 +48,6 @@ public enum BitfinexOrderType {
 				return orderType;
 			}
 		}
-		throw new IllegalArgumentException("Unable to find order type for: " + value);
+		throw new IllegalArgumentException("Unable to find order type for 找不到订单类型: " + value);
 	}
 }

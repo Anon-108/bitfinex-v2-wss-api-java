@@ -41,19 +41,21 @@ public class AuthCallback implements CommandCallbackHandler {
             throws BitfinexClientException {
         final String status = jsonObject.getString("status");
         if (status.equals("OK")) {
-            logger.info("authentication successful");
+            logger.info("authentication successful 认证成功");
             BitfinexApiKeyPermissions permissions = jsonToBitfinexApiKeyPermissions(jsonObject);
             authSuccessConsumer.accept(permissions);
         } else {
-            logger.error("Unable to authenticate: {}", jsonObject.toString());
+            logger.error("Unable to authenticate 无法进行身份验证: {}", jsonObject.toString());
             authFailedConsumer.accept(BitfinexApiKeyPermissions.NO_PERMISSIONS);
         }
     }
 
     /**
      * successful authentication event consumer
+     * 成功认证事件消费者
      *
      * @param consumer of event
+     *                 事件消费者
      */
     public void onAuthenticationSuccessEvent(Consumer<BitfinexApiKeyPermissions> consumer) {
         this.authSuccessConsumer = consumer;
@@ -61,7 +63,9 @@ public class AuthCallback implements CommandCallbackHandler {
 
     /**
      * failed authentication event consumer
+     *  失败的身份验证事件消费者
      * @param consumer of event
+     *                 事件消费者
      */
     public void onAuthenticationFailedEvent(Consumer<BitfinexApiKeyPermissions> consumer) {
         this.authFailedConsumer = consumer;

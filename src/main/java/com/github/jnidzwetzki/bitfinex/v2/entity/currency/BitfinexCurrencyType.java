@@ -18,6 +18,6 @@
 package com.github.jnidzwetzki.bitfinex.v2.entity.currency;
 
 public enum BitfinexCurrencyType {
-	CURRENCY,
-	PERPETUAL;
+	CURRENCY, //货币
+	PERPETUAL; //长期的
 }

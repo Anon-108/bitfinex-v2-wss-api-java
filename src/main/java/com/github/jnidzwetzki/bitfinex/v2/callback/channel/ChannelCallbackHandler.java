@@ -26,20 +26,24 @@ public interface ChannelCallbackHandler {
 
     /**
      * Handle data for the channel
-     *
+     *  处理通道的数据
      * @param action        - channel action (hb, te/tu etc.)
+     *                      action - 频道动作（hb、te/tu 等）
      * @param message       - json message
+     *                      消息 - json 消息
      * @throws BitfinexClientException raised in case of exception
+     * * @throws BitfinexClientException 在异常情况下引发
      */
     void handleChannelData(final String action, final JSONArray message) throws BitfinexClientException;
 
     /**
      * returns channel symbol
+     * * 返回管道符号
      */
     BitfinexStreamSymbol getSymbol();
 
     /**
-     * returns channel id
+     * returns channel id 返回通道id
      */
     int getChannelId();
 }

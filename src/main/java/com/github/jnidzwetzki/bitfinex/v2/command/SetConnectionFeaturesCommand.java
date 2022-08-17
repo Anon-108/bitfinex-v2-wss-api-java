@@ -27,7 +27,7 @@ import com.github.jnidzwetzki.bitfinex.v2.BitfinexWebsocketClient;
 public class SetConnectionFeaturesCommand implements BitfinexCommand {
 
 	/**
-	 * The active features
+	 * The active features 活跃的特点
 	 */
 	private Collection<BitfinexConnectionFeature> features;
 

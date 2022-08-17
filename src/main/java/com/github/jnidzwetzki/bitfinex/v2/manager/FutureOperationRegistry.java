@@ -26,12 +26,12 @@ import com.github.jnidzwetzki.bitfinex.v2.symbol.BitfinexStreamSymbol;
 public class FutureOperationRegistry {
 	
 	/**
-	 * The pending futures
+	 * The pending futures * 等待future
 	 */
 	private final List<FutureOperation> pendingFutures = new CopyOnWriteArrayList<>();
 	
 	/**
-	 * Register a new future
+	 * Register a new future * 注册一个新的future
 	 * @param futureOperation
 	 */
 	public void registerFuture(final FutureOperation futureOperation) {
@@ -40,6 +40,7 @@ public class FutureOperationRegistry {
 
 	/** 
 	 * Handle a subscribe or unsubscribe event
+	 * * 处理订阅或取消订阅事件
 	 */
 	public void handleEvent(final BitfinexStreamSymbol symbol) {
 		final List<FutureOperation> futuresToFinish = pendingFutures

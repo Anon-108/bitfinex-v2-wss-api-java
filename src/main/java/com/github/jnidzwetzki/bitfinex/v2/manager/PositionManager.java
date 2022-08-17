@@ -30,6 +30,7 @@ public class PositionManager extends SimpleCallbackManager<BitfinexPosition> {
 
 	/**
 	 * The positions
+	 * * 职位
 	 */
 	private final List<BitfinexPosition> positions;
 
@@ -44,6 +45,7 @@ public class PositionManager extends SimpleCallbackManager<BitfinexPosition> {
 
 	/**
 	 * Clear all orders
+	 * 清除所有订单
 	 */
 	public void clear() {
 		synchronized (positions) {
@@ -53,6 +55,7 @@ public class PositionManager extends SimpleCallbackManager<BitfinexPosition> {
 	
 	/**
 	 * Update a exchange order
+	 * * 更新换货单
 	 * @param position
 	 */
 	public void updatePosition(final BitfinexPosition position) {
@@ -69,6 +72,7 @@ public class PositionManager extends SimpleCallbackManager<BitfinexPosition> {
 	
 	/**
 	 * Get the positions
+	 * * 获取职位
 	 * @return
 	 */
 	public List<BitfinexPosition> getPositions() {
@@ -79,6 +83,7 @@ public class PositionManager extends SimpleCallbackManager<BitfinexPosition> {
 	
 	/**
 	 * Calculate additional position data like P/L
+	 * * 计算额外的头寸数据，如盈亏
 	 *
 	 * @param symbol
 	 */

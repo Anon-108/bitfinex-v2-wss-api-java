@@ -42,6 +42,7 @@ import com.github.jnidzwetzki.bitfinex.v2.symbol.BitfinexTickerSymbol;
 
 /**
  * Main registry of events listeners happening within integration with bitfinex exchange
+ * 在与 bitfinex 交换集成中发生的事件侦听器的主要注册表
  */
 public class BitfinexApiCallbackListeners {
 
@@ -68,8 +69,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for notifications on connection state
+     * * 为连接状态的通知注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onConnectionStateChange(final Consumer<BitfinexConnectionStateEnum> listener) {
         connectionStateConsumers.offer(listener);
@@ -78,8 +82,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers a listener for connection state change (Connection or Reconnection success)
+     * * 为连接状态改变注册一个监听器（连接或重新连接成功）
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook to this listener
+     * * @return 到这个监听器的钩子
      */
     public Closeable onConnectionSuccess(final Runnable listener) {
         connectionSuccessConsumers.offer(listener);
@@ -88,8 +95,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers a listener for connection state change (Connection or Reconnection fail)
+     * * 为连接状态变化注册一个监听器（连接或重新连接失败）
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook to this listener
+     * * @return 到这个监听器的钩子
      */
     public Closeable onConnectionFailed(final Runnable listener) {
         connectionFailedConsumers.offer(listener);
@@ -98,8 +108,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers a listener for connection state change (disconnect or disconnected by remote)
+     * * 为连接状态变化注册一个监听器（断开连接或远程断开连接）
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook to this listener
+     * * @return 到这个监听器的钩子
      */
     public Closeable onDisconnect(final Runnable listener) {
         disconnectionSuccessConsumers.offer(listener);
@@ -108,8 +121,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for subscribe events
+     * * 为订阅事件注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onSubscribeChannelEvent(final Consumer<BitfinexStreamSymbol> listener) {
         subscribeChannelConsumers.offer(listener);
@@ -118,8 +134,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for unsubscribe events
+     * * 为取消订阅事件注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onUnsubscribeChannelEvent(final Consumer<BitfinexStreamSymbol> listener) {
         unsubscribeChannelConsumers.offer(listener);
@@ -128,8 +147,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for my order notifications
+     * * 为我的订单通知注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onMyOrderNotification(final BiConsumer<BitfinexAccountSymbol, BitfinexSubmittedOrder> listener) {
         newOrderConsumers.offer(listener);
@@ -138,8 +160,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for user account related events - submitted order events
+     * * 注册用户帐户相关事件的监听器 - 提交的订单事件
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onMySubmittedOrderEvent(final BiConsumer<BitfinexAccountSymbol, Collection<BitfinexSubmittedOrder>> listener) {
         submittedOrderConsumers.offer(listener);
@@ -148,8 +173,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for user account related events - position events
+     * * 为用户帐户相关事件注册监听器 - 位置事件
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onMyPositionEvent(final BiConsumer<BitfinexAccountSymbol, Collection<BitfinexPosition>> listener) {
         positionConsumers.offer(listener);
@@ -158,8 +186,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for user account related events - executed trades (against submitted order) events
+     * * 为用户帐户相关事件注册监听器 - 执行交易（针对提交的订单）事件
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onMyTradeEvent(final BiConsumer<BitfinexAccountSymbol, BitfinexMyExecutedTrade> listener) {
         tradeConsumers.offer(listener);
@@ -168,8 +199,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for user account related events - wallet change events
+     * * 为用户帐户相关事件注册监听器 - 钱包更改事件
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onMyWalletEvent(final BiConsumer<BitfinexAccountSymbol,Collection<BitfinexWallet>> listener) {
         walletConsumers.offer(listener);
@@ -178,8 +212,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for candlesticks info updates
+     * * 为烛台信息更新注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onCandlesticksEvent(final BiConsumer<BitfinexCandlestickSymbol, Collection<BitfinexCandle>> listener) {
         candlesConsumers.offer(listener);
@@ -188,8 +225,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for general trades executed within scope of exchange instrument (ie. tBTCUSD)
+     * * 注册在交易工具范围内执行的一般交易的监听器（即 tBTCUSD）
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onExecutedTradeEvent(final BiConsumer<BitfinexExecutedTradeSymbol, Collection<BitfinexExecutedTrade>> listener) {
         executedTradesConsumers.offer(listener);
@@ -198,8 +238,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for orderbook events
+     * * 为订单簿事件注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onOrderbookEvent(final BiConsumer<BitfinexOrderBookSymbol, Collection<BitfinexOrderBookEntry>> listener) {
         orderbookEntryConsumers.offer(listener);
@@ -208,8 +251,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for raw orderbook events
+     * * 为原始订单簿事件注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onRawOrderbookEvent(final BiConsumer<BitfinexOrderBookSymbol, Collection<BitfinexOrderBookEntry>> listener) {
         rawOrderbookEntryConsumers.offer(listener);
@@ -218,8 +264,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for balance update events
+     * * 为余额更新事件注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onBalanceUpdateEvent(BiConsumer<BitfinexAccountSymbol, BitfinexBalanceUpdate> listener) {
         balanceUpdateConsumers.offer(listener);
@@ -228,8 +277,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for tick events
+     * * 注册tick事件的监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onTickEvent(final BiConsumer<BitfinexTickerSymbol, BitfinexTick> listener) {
         tickConsumers.offer(listener);
@@ -238,8 +290,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for event of successful authentication with api-key
+     * * 使用 api-key 注册成功认证事件的监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onAuthenticationSuccessEvent(final Consumer<BitfinexAccountSymbol> listener) {
         authSuccessConsumers.offer(listener);
@@ -248,8 +303,11 @@ public class BitfinexApiCallbackListeners {
 
     /**
      * registers listener for event of failed authentication with api-key
+     * * 使用 api-key 为认证失败的事件注册监听器
      * @param listener of event
+     *                 * @param 事件监听器
      * @return hook of this listener
+     * * @return 这个监听器的钩子
      */
     public Closeable onAuthenticationFailedEvent(final Consumer<BitfinexAccountSymbol> listener) {
         authFailedConsumers.offer(listener);

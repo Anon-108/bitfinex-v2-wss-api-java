@@ -11,6 +11,7 @@ import com.github.jnidzwetzki.bitfinex.v2.symbol.BitfinexTickerSymbol;
 
 /**
  * bitfinex commands factory
+ * bitfinex 命令工厂
  */
 public final class BitfinexCommands {
 

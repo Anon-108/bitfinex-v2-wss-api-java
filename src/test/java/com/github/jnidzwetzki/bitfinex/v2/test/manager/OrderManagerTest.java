@@ -53,6 +53,7 @@ public class OrderManagerTest {
 	
     /**
      * Test order submit failed
+     * * 测试订单提交失败
      *
      * @throws BitfinexClientException
      * @throws InterruptedException
@@ -82,6 +83,7 @@ public class OrderManagerTest {
 
     /**
      * Test notifications with null value
+     * * 使用空值测试通知
      *
      * @throws BitfinexClientException
      * @throws InterruptedException
@@ -111,6 +113,7 @@ public class OrderManagerTest {
 
     /**
      * Test the order channel handler - single order
+     * * 测试订单通道处理程序 - 单个订单
      *
      * @throws BitfinexClientException
      */
@@ -137,6 +140,7 @@ public class OrderManagerTest {
 
     /**
      * Test the order channel handler - snapshot
+     * * 测试订单通道处理程序 - 快照
      *
      * @throws BitfinexClientException
      */
@@ -166,6 +170,7 @@ public class OrderManagerTest {
 
     /**
      * Test the order channel handler - posclose order
+     * * 测试订单通道处理程序 - posclose 订单
      *
      * @throws BitfinexClientException
      */
@@ -192,6 +197,7 @@ public class OrderManagerTest {
 
     /**
      * Test the order channel handler - partFilled order
+     * * 测试订单通道处理程序——partFilled 订单
      *
      * @throws BitfinexClientException
      */
@@ -218,6 +224,7 @@ public class OrderManagerTest {
 
     /**
      * Test the cancelation of an order
+     * * 测试订单的取消
      *
      * @throws InterruptedException
      * @throws BitfinexClientException
@@ -234,6 +241,7 @@ public class OrderManagerTest {
 
     /**
      * Test the cancelation of an order
+     * * 测试订单的取消
      *
      * @throws InterruptedException
      * @throws BitfinexClientException
@@ -258,6 +266,7 @@ public class OrderManagerTest {
         };
 
         // Cancel event
+        // 取消事件
         (new Thread(r)).start();
 
         orderManager.cancelOrderAndWaitForCompletion(12);
@@ -265,6 +274,7 @@ public class OrderManagerTest {
 
     /**
      * Test the placement of an order
+     * * 测试下单
      *
      * @throws InterruptedException
      * @throws BitfinexClientException
@@ -286,6 +296,7 @@ public class OrderManagerTest {
 
     /**
      * Test the placement of an order
+     * * 测试下单
      *
      * @throws InterruptedException
      * @throws BitfinexClientException
@@ -314,7 +325,7 @@ public class OrderManagerTest {
             orderManager.updateOrderCallback(symbol, exchangeOrder);
         };
 
-        // Cancel event
+        // Cancel event // 取消事件
         (new Thread(r)).start();
 
         orderManager.placeOrderAndWaitUntilActive(order);

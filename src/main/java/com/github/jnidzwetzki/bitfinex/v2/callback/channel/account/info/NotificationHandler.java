@@ -50,7 +50,7 @@ public class NotificationHandler implements ChannelCallbackHandler {
      */
     @Override
     public void handleChannelData(final String action, final JSONArray payload) throws BitfinexClientException {
-        logger.debug("Got notification callback {}", payload.toString());
+        logger.debug("Got notification callback 收到通知回调 {}", payload.toString());
 
         if (payload.isEmpty()) {
             return;
@@ -105,13 +105,14 @@ public class NotificationHandler implements ChannelCallbackHandler {
             submittedOrder.setCurrencyPair(BitfinexCurrencyPair.fromSymbolString(symbol));
         }
         submittedOrder.setStatus(BitfinexSubmittedOrderStatus.ERROR);
-        logger.error("State for order {} is {}, reason is {}", submittedOrder.getOrderId(), state, stateValue);
+        logger.error("State for order 订单状态 {} is {}, reason is  原因是{}", submittedOrder.getOrderId(), state, stateValue);
         return submittedOrder;
     }
 
     /**
      * exchange order notification consumer
-     * @param consumer of event
+     * 交换订单通知使用者
+     * @param consumer of event 事件消费者
      */
     public void onOrderNotification(BiConsumer<BitfinexAccountSymbol, BitfinexSubmittedOrder> consumer) {
         this.submittedOrderConsumer = consumer;

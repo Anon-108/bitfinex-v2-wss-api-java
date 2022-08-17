@@ -50,7 +50,7 @@ public class MyExecutedTradeHandler implements ChannelCallbackHandler {
      */
     @Override
     public void handleChannelData(final String action, final JSONArray payload) throws BitfinexClientException {
-        logger.info("Got trade callback {}", payload.toString());
+        logger.info("Got trade callback 收到交易回调 {}", payload.toString());
 
         BitfinexMyExecutedTrade trade = jsonToTrade(payload);
 

@@ -28,6 +28,7 @@ public class SimpleCallbackManager<T> extends AbstractManager {
 	
 	/**
 	 * The order callbacks
+	 * * 订单回调
 	 */
 	private final List<Consumer<T>> callbacks;
 	
@@ -39,6 +40,7 @@ public class SimpleCallbackManager<T> extends AbstractManager {
 	
 	/**
 	 * Add a order callback
+	 * * 添加订单回调
 	 * @param callback
 	 */
 	public void registerCallback(final Consumer<T> callback) {
@@ -49,6 +51,7 @@ public class SimpleCallbackManager<T> extends AbstractManager {
 	
 	/**
 	 * Remove a order callback
+	 * * 移除订单回调
 	 * @param callback
 	 * @return
 	 */
@@ -60,11 +63,13 @@ public class SimpleCallbackManager<T> extends AbstractManager {
 	
 	/**
 	 * Update a exchange order
+	 * * 更新换货单
 	 * @param exchangeOrder
 	 */
 	public void notifyCallbacks(final T exchangeOrder) {
 
-		// Notify callbacks async		
+		// Notify callbacks async
+		// 通知回调异步
 		if(callbacks == null) {
 			return;
 		}

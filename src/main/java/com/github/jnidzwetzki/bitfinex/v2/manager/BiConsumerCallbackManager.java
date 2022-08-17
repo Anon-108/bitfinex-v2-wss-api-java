@@ -31,7 +31,7 @@ import com.github.jnidzwetzki.bitfinex.v2.exception.BitfinexClientException;
 public class BiConsumerCallbackManager<S, T> extends AbstractManager {
 
 	/**
-	 * The callbacks
+	 * The callbacks 	 * * 回调* 回调
 	 */
 	private final Map<S, List<BiConsumer<S, T>>> callbacks;
 	
@@ -43,7 +43,7 @@ public class BiConsumerCallbackManager<S, T> extends AbstractManager {
 	}
 	
 	/**
-	 * Register a new callback
+	 * Register a new callback * 注册一个新的回调
 	 * @param symbol
 	 * @param callback
 	 * @throws BitfinexClientException
@@ -55,7 +55,7 @@ public class BiConsumerCallbackManager<S, T> extends AbstractManager {
 	}
 	
 	/**
-	 * Remove the a callback
+	 * Remove the a callback * 移除回调
 	 * @param symbol
 	 * @param callback
 	 * @return
@@ -66,7 +66,7 @@ public class BiConsumerCallbackManager<S, T> extends AbstractManager {
 		final List<BiConsumer<S, T>> callbackList = callbacks.get(symbol);
 
 		if(callbackList == null) {
-			throw new BitfinexClientException("Unknown ticker string: " + symbol);
+			throw new BitfinexClientException("Unknown ticker string 未知的股票代码字符串: " + symbol);
 		}			
 		
 		return callbackList.remove(callback);	
@@ -74,8 +74,9 @@ public class BiConsumerCallbackManager<S, T> extends AbstractManager {
 	
 	/**
 	 * Process a list with event
+	 * * 处理带有事件的列表
 	 * @param symbol
-	 * @param ticksArray
+	 * @param elements
 	 */
 	public void handleEventsCollection(final S symbol, final Collection<T> elements) {
 		
@@ -90,6 +91,7 @@ public class BiConsumerCallbackManager<S, T> extends AbstractManager {
 		}
 		
 		// Notify callbacks synchronously, to preserve the order of events
+		// 同步通知回调，以保持事件的顺序
 		for (final T element : elements) {
 			callbackList.forEach((c) -> {
 				c.accept(symbol, element);
@@ -99,6 +101,7 @@ public class BiConsumerCallbackManager<S, T> extends AbstractManager {
 	
 	/**
 	 * Handle a new tick
+	 * * 处理一个新的钩子
 	 * @param symbol
 	 * @param element
 	 */

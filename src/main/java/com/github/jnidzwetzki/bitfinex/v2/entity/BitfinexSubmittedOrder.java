@@ -27,62 +27,74 @@ public class BitfinexSubmittedOrder extends BitfinexOrder {
 
     /**
      * exchange assigned order id
+     * *交换分配的订单ID
      */
     private Long orderId;
 
     /**
      * Millisecond timestamp of creation
+     * * 创建的毫秒时间戳
      */
     private Long createdTimestamp;
 
     /**
      * Millisecond timestamp of last update
+     * * 最后更新的毫秒时间戳
      */
     private Long updatedTimestamp;
 
     /**
      * order amount - positive means buy, negative means sell.
+     * 订单金额 - 正数表示买入，负数表示卖出。
      */
     private BigDecimal amount;
 
     /**
      * original amount - at creation
+     * * 原始金额 - 创建时
      */
     private BigDecimal amountAtCreation;
 
 
     /**
      * Order Status: ACTIVE, EXECUTED @ PRICE(AMOUNT) e.g. "EXECUTED @ 107.6(-0.2)", PARTIALLY FILLED @ PRICE(AMOUNT), INSUFFICIENT MARGIN was: PARTIALLY FILLED @ PRICE(AMOUNT), CANCELED, CANCELED was: PARTIALLY FILLED @ PRICE(AMOUNT)
+     * * 订单状态：ACTIVE, EXECUTED @ PRICE(AMOUNT) e.g. “执行@ 107.6(-0.2)”，部分填充@价格（金额），保证金不足为：部分填充@价格（金额），取消，取消为：部分填充@价格（金额）
      */
     private BitfinexSubmittedOrderStatus status;
 
     /**
      * Order status description
+     * * 订单状态描述
      */
     private String statusDescription;
 
     /**
      * Average price
+     * * 平均价格
      */
     private BigDecimal priceAverage;
 
     /**
      * If another order caused this order to be placed (OCO) this will be that other order's ID
+     * * 如果另一个订单导致该订单下达 (OCO)，这将是该订单的 ID
      */
     private Long parentOrderId;
 
     /**
      * Order (parent) type that triggered this order
+     * * 触发此订单的订单（父）类型
      */
     private BitfinexOrderType parentOrderType;
 
     /**
      * no var rates flag
+     * * 没有可变比率标志
      */
     private boolean noVarRates;
 
     /**
      * notify flag
+     * * 通知标志
      */
     private boolean notify;
 

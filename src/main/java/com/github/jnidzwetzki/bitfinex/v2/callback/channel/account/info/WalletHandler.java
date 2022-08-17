@@ -56,7 +56,7 @@ public class WalletHandler implements ChannelCallbackHandler {
 		}
 
 		if (payload.get(0) instanceof JSONArray) {
-			// snapshot
+			// snapshot 快照
 			for (int walletPos = 0; walletPos < payload.length(); walletPos++) {
 				final JSONArray walletArray = payload.getJSONArray(walletPos);
 				BitfinexWallet wallet = jsonArrayToWallet(walletArray);
@@ -91,8 +91,8 @@ public class WalletHandler implements ChannelCallbackHandler {
 	}
 
 	/**
-	 * wallet event consumer
-	 * @param consumer of event
+	 * wallet event consumer 钱包事件消费者
+	 * @param consumer of event  事件消费者
 	 */
 	public void onWalletsEvent(BiConsumer<BitfinexAccountSymbol, Collection<BitfinexWallet>> consumer) {
 		this.walletConsumer = consumer;

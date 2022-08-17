@@ -22,52 +22,52 @@ import java.math.BigDecimal;
 public class BitfinexTick {
 
 	/**
-	 * The bid
+	 * The bid * 出价
 	 */
 	private final BigDecimal bid;
 
 	/**
-	 * The bid size
+	 * The bid size * 出价大小
 	 */
 	private final BigDecimal bidSize;
 
 	/**
-	 * The ask
+	 * The ask 邀请/请求
 	 */
 	private final BigDecimal ask;
 
 	/**
-	 * The bid size
+	 * The ask size  邀请/请求大小
 	 */
 	private final BigDecimal askSize;
 
 	/**
-	 * The daily change
+	 * The daily change *每日变化
 	 */
 	private final BigDecimal dailyChange;
 
 	/**
-	 * The daily change in percent
+	 * The daily change in percent * 每日百分比变化
 	 */
 	private final BigDecimal dailyChangePerc;
 
 	/**
-	 * The last price
+	 * The last price * 最后价格
 	 */
 	private final BigDecimal lastPrice;
 
 	/**
-	 * The volume
+	 * The volume 卷
 	 */
 	private final BigDecimal volume;
 
 	/**
-	 * The daily high
+	 * The daily high * 每日最高价
 	 */
 	private final BigDecimal high;
 
 	/**
-	 * The daily low
+	 * The daily low * 每日最低价
 	 */
 	private final BigDecimal low;
 

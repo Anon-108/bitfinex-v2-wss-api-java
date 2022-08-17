@@ -31,6 +31,7 @@ public class OrderbookManager extends AbstractManager {
 
 	/**
 	 * The channel callbacks
+	 * * 通道回调
 	 */
 	private final BiConsumerCallbackManager<BitfinexOrderBookSymbol, BitfinexOrderBookEntry> channelCallbacks;
 
@@ -44,6 +45,7 @@ public class OrderbookManager extends AbstractManager {
 
 	/**
 	 * Register a new trading orderbook callback
+	 * * 注册一个新的交易订单回调
 	 * @throws BitfinexClientException
 	 */
 	public void registerOrderbookCallback(final BitfinexOrderBookSymbol orderbookConfiguration,
@@ -54,6 +56,7 @@ public class OrderbookManager extends AbstractManager {
 
 	/**
 	 * Remove the a trading orderbook callback
+	 * * 移除交易订单簿回调
 	 */
 	public boolean removeOrderbookCallback(final BitfinexOrderBookSymbol orderbookConfiguration,
 			final BiConsumer<BitfinexOrderBookSymbol, BitfinexOrderBookEntry> callback) throws BitfinexClientException {
@@ -63,6 +66,7 @@ public class OrderbookManager extends AbstractManager {
 
 	/**
 	 * Subscribe a orderbook
+	 * * 订阅订单
 	 */
 	public void subscribeOrderbook(final BitfinexOrderBookSymbol orderbookConfiguration) {
 
@@ -74,6 +78,7 @@ public class OrderbookManager extends AbstractManager {
 
 	/**
 	 * Unsubscribe a orderbook
+	 * * 取消订阅订单
 	 */
 	public void unsubscribeOrderbook(final BitfinexOrderBookSymbol orderbookConfiguration) {
 		final UnsubscribeChannelCommand command = new UnsubscribeChannelCommand(orderbookConfiguration);
@@ -82,6 +87,7 @@ public class OrderbookManager extends AbstractManager {
 
 	/**
 	 * Handle a new orderbook entry
+	 * * 处理一个新的订单簿条目
 	 */
 	public void handleNewOrderbookEntry(final BitfinexOrderBookSymbol configuration,
 			final BitfinexOrderBookEntry entry) {

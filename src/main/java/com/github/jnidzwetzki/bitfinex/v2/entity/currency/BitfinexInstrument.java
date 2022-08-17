@@ -21,6 +21,7 @@ public interface BitfinexInstrument {
 	
 	/**
 	 * Get the bitfinex symbol string
+	 * 获取bitfinex符号字符串
 	 * @return
 	 */
 	public String toBitfinexString();

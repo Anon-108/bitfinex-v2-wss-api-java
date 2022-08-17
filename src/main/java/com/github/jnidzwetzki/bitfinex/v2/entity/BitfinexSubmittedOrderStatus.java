@@ -42,11 +42,11 @@ public enum BitfinexSubmittedOrderStatus {
 			}
 		}
 
-		// Handle special cases
-		// Case1: INSUFFICIENT BALANCE (G1) was: ACTIVE (note:POSCLOSE), PARTIALLY FILLED
+		// Handle special cases 处理特殊情况
+		// Case1: INSUFFICIENT BALANCE (G1) was: ACTIVE (note:POSCLOSE), PARTIALLY FILLED 案例 1：余额不足 (G1) 为：活动（注：POSCLOSE），部分填充
 		if(string.contains(", PARTIALLY FILLED")) {
 			return BitfinexSubmittedOrderStatus.PARTIALLY_FILLED;
 		}
-		throw new IllegalArgumentException("Unable to find order type for: " + string);
+		throw new IllegalArgumentException("Unable to find order type for 找不到订单类型: " + string);
 	}
 }

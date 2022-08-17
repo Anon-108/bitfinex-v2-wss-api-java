@@ -25,6 +25,7 @@ public class BitfinexCurrencyFactory {
 
 	/**
 	 * Build the bitfinex currency from sybol string
+	 * * 从 sybol 字符串构建 bitfinex 货币
 	 * @param symbolString
 	 * @return
 	 */
@@ -35,7 +36,7 @@ public class BitfinexCurrencyFactory {
 		} else if(symbolString.startsWith("f")) {
 			return BitfinexFundingCurrency.fromSymbolString(symbolString);
 		} else {
-			throw new IllegalArgumentException("Unable to build currency for symbol string: " + symbolString);
+			throw new IllegalArgumentException("Unable to build currency for symbol string 无法为符号字符串构建货币: " + symbolString);
 		}
 	}
 	

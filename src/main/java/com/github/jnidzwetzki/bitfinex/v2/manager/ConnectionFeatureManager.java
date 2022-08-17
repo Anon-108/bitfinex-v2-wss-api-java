@@ -30,12 +30,13 @@ public class ConnectionFeatureManager extends AbstractManager {
 	
 	/**
 	 * The connection features
+	 * * 连接功能
 	 */
 	private final Set<BitfinexConnectionFeature> connectionFeatures;
 	
 	/**
-	 * The active connection features 
-	 * (we got a status update for our requested features)
+	 * The active connection features * 主动连接功能
+	 * (we got a status update for our requested features) *（我们得到了我们要求的功能的状态更新）
 	 */
 	private int activeConnectionFeatures;
 	
@@ -49,7 +50,7 @@ public class ConnectionFeatureManager extends AbstractManager {
 	}
 
 	/**
-	 * Enable a connection feature
+	 * Enable a connection feature * 启用连接功能
 	 * @param feature
 	 */
 	public void enableConnectionFeature(final BitfinexConnectionFeature feature) {
@@ -58,7 +59,7 @@ public class ConnectionFeatureManager extends AbstractManager {
 	}
 	
 	/**
-	 * Disable a connection feature
+	 * Disable a connection feature *禁用连接功能
 	 * @param feature
 	 */
 	public void disableConnectionFeature(final BitfinexConnectionFeature feature) {
@@ -67,7 +68,7 @@ public class ConnectionFeatureManager extends AbstractManager {
 	}
 
 	/**
-	 * Is the given connection feature enabled?
+	 * Is the given connection feature enabled? * 是否启用了给定的连接功能？
 	 * @param feature
 	 * @return
 	 */
@@ -76,7 +77,7 @@ public class ConnectionFeatureManager extends AbstractManager {
 	}
 	
 	/**
-	 * Get the active connection features
+	 * Get the active connection features * 获取活动连接功能
 	 * @return
 	 */
 	public int getActiveConnectionFeatures() {
@@ -84,7 +85,7 @@ public class ConnectionFeatureManager extends AbstractManager {
 	}
 	
 	/**
-	 * Is the given connection feature active?
+	 * Is the given connection feature active? * 给定的连接功能是否有效？
 	 * @param feature
 	 * @return
 	 */
@@ -93,7 +94,7 @@ public class ConnectionFeatureManager extends AbstractManager {
 	}
 	
 	/**
-	 * Set the active connection features
+	 * Set the active connection features * 设置活动连接功能
 	 * @param activeConnectionFeatures
 	 */
 	public void setActiveConnectionFeatures(final int activeConnectionFeatures) {
@@ -101,7 +102,7 @@ public class ConnectionFeatureManager extends AbstractManager {
 	}
 	
 	/**
-	 * Apply the set connection features to connection
+	 * Apply the set connection features to connection * 将设置的连接功能应用于连接
 	 */
 	public void applyConnectionFeatures() {
 		final SetConnectionFeaturesCommand apiCommand = new SetConnectionFeaturesCommand(connectionFeatures);

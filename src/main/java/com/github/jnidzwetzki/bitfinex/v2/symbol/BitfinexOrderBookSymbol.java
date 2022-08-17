@@ -40,21 +40,25 @@ public class BitfinexOrderBookSymbol implements BitfinexStreamSymbol {
 
 	/**
 	 * The currency pair
+	 * * 货币对
 	 */
 	private final BitfinexCurrencyPair currencyPair;
 
 	/**
 	 * The orderbook precision
+	 * * 订单精度
 	 */
 	private final Precision orderBookPrecision;
 
 	/**
 	 * The orderbook frequency
+	 * * 订单频率
 	 */
 	private final Frequency frequency;
 
 	/**
 	 * The amount of price points
+	 * * 价格点数量
 	 */
 	private final Integer pricePoints;
 
@@ -67,11 +71,11 @@ public class BitfinexOrderBookSymbol implements BitfinexStreamSymbol {
 			this.frequency = frequency;
 			
 			if(pricePoints == null) {
-				throw new IllegalArgumentException("Price points must be != NULL");
+				throw new IllegalArgumentException("Price points must be != NULL 价格点必须是 != NULL");
 			}
 			
 			if (pricePoints < 25 || pricePoints > 100) {
-				throw new IllegalArgumentException("Price points must be between 25 and 100");
+				throw new IllegalArgumentException("Price points must be between 25 and 100 价格点必须在 25 到 100 之间");
 			}
 			this.pricePoints = pricePoints;
 		} else {
@@ -128,7 +132,7 @@ public class BitfinexOrderBookSymbol implements BitfinexStreamSymbol {
 	}
 
 	/**
-	 * Build from JSON Array
+	 * Build from JSON Array * 从 JSON 数组构建
 	 * @param jsonObject
 	 * @return
 	 */

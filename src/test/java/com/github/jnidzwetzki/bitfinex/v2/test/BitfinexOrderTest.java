@@ -78,6 +78,7 @@ public class BitfinexOrderTest {
 		
 		for(final List<BitfinexOrderFlag> flags : orderflagPermutations) {
 			// Convert to set
+			// 转换为集合
 			final HashSet<BitfinexOrderFlag> orderFlags = new HashSet<>(flags);
 
 			final BitfinexOrder bitfinexNewOrder = new BitfinexOrder();
@@ -85,6 +86,7 @@ public class BitfinexOrderTest {
 			Assert.assertEquals(orderFlags, bitfinexNewOrder.getOrderFlags());
 			
 			// Marge and parse flags from and to long
+			// Marge 和解析标志 from 和 to long
 			bitfinexNewOrder.setOrderFlags(bitfinexNewOrder.getCombinedFlags());
 			
 			Assert.assertEquals(orderFlags, bitfinexNewOrder.getOrderFlags());

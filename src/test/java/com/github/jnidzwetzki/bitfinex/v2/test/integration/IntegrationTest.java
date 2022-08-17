@@ -65,6 +65,7 @@ public class IntegrationTest {
 
 	/**
 	 * Try to fetch wallets on an unauthenticated connection
+	 * * 尝试在未经身份验证的连接上获取钱包
 	 */
 	@Test
 	public void testWalletsOnUnauthClient() throws BitfinexClientException {
@@ -96,6 +97,7 @@ public class IntegrationTest {
 
 	/**
 	 * Test the orderbook stream
+	 * * 测试订单流
 	 */
 	@Test(timeout=30000)
 	public void testOrderbookStream() {
@@ -138,6 +140,7 @@ public class IntegrationTest {
 
 	/**
 	 * Test the raw orderbook stream
+	 * * 测试原始订单流
 	 */
 	@Test(timeout=30000)
 	public void testRawOrderbookStream() {
@@ -170,6 +173,7 @@ public class IntegrationTest {
 
 		} catch (Exception e) {
 			// Should not happen
+			// 不应该发生
 			e.printStackTrace();
 			Assert.fail();
 		} finally {
@@ -179,6 +183,7 @@ public class IntegrationTest {
 
 	/**
 	 * Test the candle stream
+	 * * 测试蜡烛流
 	 */
 	@Test(timeout=30000)
 	public void testCandleStream() {
@@ -196,6 +201,7 @@ public class IntegrationTest {
 
 			for(final BitfinexCandlestickSymbol symbol : symbols) {
 				// Await at least 10 callbacks
+				// 等待至少 10 个回调
 				final CountDownLatch latch1 = new CountDownLatch(10);
 
 				final BiConsumer<BitfinexCandlestickSymbol, BitfinexCandle> callback = (c, o) -> {
@@ -213,6 +219,7 @@ public class IntegrationTest {
 			}
 		} catch (Exception e) {
 			// Should not happen
+			// 不应该发生
 			e.printStackTrace();
 			Assert.fail();
 		} finally {
@@ -222,12 +229,14 @@ public class IntegrationTest {
 
 	/**
 	 * Test executed trades stream
+	 * * 测试执行的交易流
 	 */
 	@Test(timeout=60000)
 	public void testExecutedTradesStream() {
 		final BitfinexWebsocketClient bitfinexClient = new SimpleBitfinexApiBroker(new BitfinexWebsocketConfiguration(), new BitfinexApiCallbackRegistry(), new SequenceNumberAuditor(), false);
 
 		// Await at least 2 callbacks
+		// 等待至少 2 个回调
 		final CountDownLatch latch = new CountDownLatch(2);
 		try {
 			bitfinexClient.connect();
@@ -250,6 +259,7 @@ public class IntegrationTest {
 
 		} catch (Exception e) {
 			// Should not happen
+			// 不应该发生
 			e.printStackTrace();
 			Assert.fail();
 		} finally {
@@ -259,6 +269,7 @@ public class IntegrationTest {
 
 	/**
 	 * Test unsubscribe all channels
+	 * * 测试退订所有频道
 	 */
 	@Test(timeout=60000)
 	public void testUnsubscrribeAllChannels() {
@@ -281,6 +292,7 @@ public class IntegrationTest {
 			Assert.assertTrue(bitfinexClient.getSubscribedChannels().isEmpty());
 		} catch (Exception e) {
 			// Should not happen
+			// 不应该发生
 			e.printStackTrace();
 			Assert.fail();
 		} finally {
@@ -291,12 +303,14 @@ public class IntegrationTest {
 
 	/**
 	 * Test the tick stream
+	 * * 测试滴答流
 	 */
 	@Test(timeout=120_000)
 	public void testTickerStream() {
 		final BitfinexWebsocketClient bitfinexClient = new SimpleBitfinexApiBroker(new BitfinexWebsocketConfiguration(), new BitfinexApiCallbackRegistry(), new SequenceNumberAuditor(), false);
 
 		// Await at least 2 callbacks
+		// 等待至少 2 个回调
 		final CountDownLatch latch = new CountDownLatch(2);
 		try {
 			bitfinexClient.connect();
@@ -322,6 +336,7 @@ public class IntegrationTest {
 
 		} catch (Exception e) {
 			// Should not happen
+			// 不应该发生
 			e.printStackTrace();
 			Assert.fail();
 		} finally {
@@ -331,6 +346,7 @@ public class IntegrationTest {
 
 	/**
 	 * Test auth failed
+	 * * 测试认证失败
 	 * @throws BitfinexClientException
 	 */
 	@Test(expected=BitfinexClientException.class, timeout=120_000)
@@ -349,12 +365,14 @@ public class IntegrationTest {
 		bitfinexClient.connect();
 
 		// Should not be reached
+		// 不应该到达
 		Assert.fail();
 		bitfinexClient.close();
 	}
 
 	/**
 	 * Test the session reconnect
+	 * * 测试会话重连
 	 * @throws BitfinexClientException
 	 * @throws InterruptedException
 	 * @throws ExecutionException 
@@ -372,6 +390,7 @@ public class IntegrationTest {
 		subscribeFuture.waitForCompletion();
 		
 		// Await at least 2 callbacks
+		// 等待至少 2 个回调
 		final CountDownLatch latchBefore = new CountDownLatch(2);
 
 		final BiConsumer<BitfinexTickerSymbol, BitfinexTick> beforeCallback = (c, o) -> {
@@ -386,6 +405,7 @@ public class IntegrationTest {
 		Assert.assertTrue(reconnectResult);
 		
 		// Await at least 2 callbacks
+		// 等待至少 2 个回调
 		final CountDownLatch latch = new CountDownLatch(2);
 
 		final BiConsumer<BitfinexTickerSymbol, BitfinexTick> callback = (c, o) -> {
@@ -406,6 +426,7 @@ public class IntegrationTest {
 
 	/**
 	 * Test the sequencing feature
+	 * * 测试排序功能
 	 * @throws BitfinexClientException
 	 * @throws InterruptedException
 	 * @throws TimeoutException 
@@ -467,12 +488,14 @@ public class IntegrationTest {
 
 	/**
 	 * Test the error callback
+	 * * 测试错误回调
 	 */
 	@Test(timeout=30000)
 	public void testErrorCallback() {
 		final BitfinexWebsocketClient bitfinexClient = new SimpleBitfinexApiBroker(new BitfinexWebsocketConfiguration(), new BitfinexApiCallbackRegistry(), new SequenceNumberAuditor(), false);
 
 		// Await at least 5 callbacks
+		// 等待至少 5 个回调
 		final CountDownLatch latch = new CountDownLatch(5);
 		try {
 			bitfinexClient.connect();
@@ -486,10 +509,12 @@ public class IntegrationTest {
 			};
 
 			// 1st subscribe call
+			// 第一次订阅调用
 			orderbookManager.registerCandlestickCallback(symbol, callback);
 			orderbookManager.subscribeCandles(symbol);
 
 			// 2nd subscribe call
+			// 第二次订阅调用
 			orderbookManager.subscribeCandles(symbol);
 
 			latch.await();
@@ -501,6 +526,7 @@ public class IntegrationTest {
 
 		} catch (Exception e) {
 			// Should not happen
+			// 不应该发生
 			e.printStackTrace();
 			Assert.fail();
 		} finally {

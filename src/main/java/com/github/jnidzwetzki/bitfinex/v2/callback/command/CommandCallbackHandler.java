@@ -24,9 +24,9 @@ import com.github.jnidzwetzki.bitfinex.v2.exception.BitfinexClientException;
 public interface CommandCallbackHandler {
 	
 	/**
-	 * Handle callback of the command
-	 * @param jsonObject to consume
-	 * @throws BitfinexClientException raised in case of handling error
+	 * Handle callback of the command 处理命令的回调
+	 * @param jsonObject to consume jsonObject 消费
+	 * @throws BitfinexClientException raised in case of handling error 在处理错误的情况下引发
 	 */
 	void handleChannelData(final JSONObject jsonObject) throws BitfinexClientException;
 }

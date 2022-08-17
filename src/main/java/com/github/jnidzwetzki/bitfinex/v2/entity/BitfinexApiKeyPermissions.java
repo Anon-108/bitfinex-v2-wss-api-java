@@ -22,6 +22,7 @@ import java.util.Objects;
 public class BitfinexApiKeyPermissions {
     /**
      * All available permissions for a connection
+     * * 连接的所有可用权限
      */
     private final boolean orderReadPermission;
     private final boolean orderWritePermission;
@@ -40,12 +41,14 @@ public class BitfinexApiKeyPermissions {
 
     /**
      * No permissions granted
+     * * 未授予权限
      */
     public static BitfinexApiKeyPermissions NO_PERMISSIONS = new BitfinexApiKeyPermissions(false, false, false, false, false,
             false, false, false, false, false, false, false, false, false);
 
     /**
      * All permissions granted
+     * * 授予所有权限
      */
     public static BitfinexApiKeyPermissions ALL_PERMISSIONS = new BitfinexApiKeyPermissions(true, true, true, true, true, true,
             true, true, true, true, true, true, true, true);

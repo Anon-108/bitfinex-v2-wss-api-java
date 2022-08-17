@@ -23,6 +23,7 @@ public class BitfinexFundingSymbol implements BitfinexStreamSymbol {
 	
 	/**
 	 * The currency pair
+	 * * 货币对
 	 */
 	private final BitfinexFundingCurrency currency;
 
@@ -32,6 +33,7 @@ public class BitfinexFundingSymbol implements BitfinexStreamSymbol {
 
 	/**
 	 * Build from bitfinex string
+	 * * 从 bitfinex 字符串构建
 	 * @param symbol
 	 * @return
 	 */
@@ -42,6 +44,7 @@ public class BitfinexFundingSymbol implements BitfinexStreamSymbol {
 
 	/**
 	 * Get the funding currency
+	 * * 获取资金币种
 	 * @return
 	 */
 	public BitfinexFundingCurrency getCurrency() {

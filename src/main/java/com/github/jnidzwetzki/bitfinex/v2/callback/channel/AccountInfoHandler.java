@@ -67,68 +67,68 @@ public class AccountInfoHandler implements ChannelCallbackHandler {
         channelHandler.put("hb", heartbeatHandler);
 
         positionHandler = new PositionHandler(channelId, symbol);
-        channelHandler.put("ps", positionHandler); // Position snapshot
-        channelHandler.put("pn", positionHandler); // Position new
-        channelHandler.put("pu", positionHandler); // Position updated
-        channelHandler.put("pc", positionHandler); // Position canceled
+        channelHandler.put("ps", positionHandler); // Position snapshot 位置快照
+        channelHandler.put("pn", positionHandler); // Position new 新位置
+        channelHandler.put("pu", positionHandler); // Position updated 位置已更新
+        channelHandler.put("pc", positionHandler); // Position canceled 位置取消
 
         final ChannelCallbackHandler fundingHandler = new DoNothingHandler();
-        channelHandler.put("fos", fundingHandler); // Founding offer snapshot
-        channelHandler.put("fon", fundingHandler); // Founding offer notification
-        channelHandler.put("fou", fundingHandler); // Founding offer update
-        channelHandler.put("foc", fundingHandler); // Founding offer cancel
+        channelHandler.put("fos", fundingHandler); // Founding offer snapshot 创始报价快照
+        channelHandler.put("fon", fundingHandler); // Founding offer notification 创始报价通知
+        channelHandler.put("fou", fundingHandler); // Founding offer update 创始报价更新
+        channelHandler.put("foc", fundingHandler); // Founding offer cancel  创始报价取消
 
-        channelHandler.put("fcs", fundingHandler); // Founding credit snapshot
-        channelHandler.put("fcn", fundingHandler); // Founding credit notification
-        channelHandler.put("fcu", fundingHandler); // Founding credit update
-        channelHandler.put("fcc", fundingHandler); // Founding credit cancel
+        channelHandler.put("fcs", fundingHandler); // Founding credit snapshot 创始信用快照
+        channelHandler.put("fcn", fundingHandler); // Founding credit notification 创始信用通知
+        channelHandler.put("fcu", fundingHandler); // Founding credit update 创始信用更新
+        channelHandler.put("fcc", fundingHandler); // Founding credit cancel 创始信用注销
 
-        channelHandler.put("fls", fundingHandler); // Founding loans snapshot
-        channelHandler.put("fln", fundingHandler); // Founding loans notification
-        channelHandler.put("flu", fundingHandler); // Founding loans update
-        channelHandler.put("flc", fundingHandler); // Founding loans cancel
-        channelHandler.put("fte", fundingHandler); // Founding funding trade executed
-        channelHandler.put("ftu", fundingHandler); // Founding funding trade updated
+        channelHandler.put("fls", fundingHandler); // Founding loans snapshot 创始贷款快照
+        channelHandler.put("fln", fundingHandler); // Founding loans notification 创始贷款通知
+        channelHandler.put("flu", fundingHandler); // Founding loans update 创始贷款更新
+        channelHandler.put("flc", fundingHandler); // Founding loans cancel 创始贷款取消
+        channelHandler.put("fte", fundingHandler); // Founding funding trade executed 创始资金交易执行
+        channelHandler.put("ftu", fundingHandler); // Founding funding trade updated 创始资金交易更新
 
-        channelHandler.put("ats", new DoNothingHandler()); // Ats - Unknown
+        channelHandler.put("ats", new DoNothingHandler()); // Ats - Unknown Ats - 未知
 
         walletHandler = new WalletHandler(channelId, symbol);
-        channelHandler.put("ws", walletHandler); // Wallet snapshot
-        channelHandler.put("wu", walletHandler); // Wallet update
+        channelHandler.put("ws", walletHandler); // Wallet snapshot 钱包快照
+        channelHandler.put("wu", walletHandler); // Wallet update 钱包更新
 
         orderHandler = new OrderHandler(channelId, symbol);
-        channelHandler.put("os", orderHandler); // Order snapshot
-        channelHandler.put("on", orderHandler); // Order notification
-        channelHandler.put("ou", orderHandler); // Order update
-        channelHandler.put("oc", orderHandler); // Order cancellation
+        channelHandler.put("os", orderHandler); // Order snapshot 订单快照
+        channelHandler.put("on", orderHandler); // Order notification 订单通知
+        channelHandler.put("ou", orderHandler); // Order update 订单更新
+        channelHandler.put("oc", orderHandler); // Order cancellation 取消订单
 
         tradeHandler = new MyExecutedTradeHandler(channelId, symbol);
-        channelHandler.put("te", tradeHandler); // Trade executed
-        channelHandler.put("tu", tradeHandler); // Trade updates
+        channelHandler.put("te", tradeHandler); // Trade executed 交易执行
+        channelHandler.put("tu", tradeHandler); // Trade updates 贸易更新
 
         balanceInfoHandler = new BalanceInfoHandler(channelId, symbol);
-        channelHandler.put("bu", balanceInfoHandler); // balance update
+        channelHandler.put("bu", balanceInfoHandler); // balance update 余额更新
 
         notificationHandler = new NotificationHandler(channelId, symbol);
-        channelHandler.put("n", notificationHandler); // General notification
+        channelHandler.put("n", notificationHandler); // General notification 一般通知
     }
 
     @Override
     public void handleChannelData(final String action, final JSONArray message) throws BitfinexClientException {
         if (message.toString().contains("ERROR")) {
-            logger.error("Got error message: {}", message.toString());
+            logger.error("Got error message 收到错误信息: {}", message.toString());
         }
         
         final ChannelCallbackHandler handler = channelHandler.get(action);
         if (handler == null) {
-            logger.error("No match found for action {} and message {}", action, message);
+            logger.error("No match found for action  找不到匹配的操作{}  and message 和留言 {}", action, message);
             return;
         }
         
         try {
             handler.handleChannelData(action, message);
         } catch (final BitfinexClientException e) {
-            logger.error("Got exception while handling callback", e);
+            logger.error("Got exception while handling callback 处理回调时出现异常", e);
         }
     }
 

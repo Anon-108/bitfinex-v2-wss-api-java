@@ -30,6 +30,7 @@ public enum BitfinexConnectionFeature {
 	
 	/**
 	 * Get the feature flag
+	 * * 获取特征标志
 	 * @return
 	 */
 	public int getFeatureFlag() {

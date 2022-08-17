@@ -25,10 +25,11 @@ public class PooledBitfinexApiBrokerTest {
 		}
 	}
 
-    // @Test(timeout = 45_000)
+    // @Test(timeout = 45_000) // @Test(超时 = 45_000)
     // Test can currently not be executed in travis ci pipeline
+    // 目前无法在 travis ci 管道中执行测试
 	public void testSubscriptions() throws InterruptedException {
-        // given
+        // given 给定
         final int channelLimit = 10;
         final int channelsPerConnection = 12;
 
@@ -39,11 +40,11 @@ public class PooledBitfinexApiBrokerTest {
 
         Assert.assertFalse(client.isAuthenticated());
 
-        // when
+        // when 什么时候
         final CountDownLatch subsLatch = new CountDownLatch(channelLimit * 3);
         client.getCallbacks().onSubscribeChannelEvent(chan -> {
         		subsLatch.countDown();
-        		System.out.println("Got subscribed event: " + chan + " " + subsLatch.getCount());
+        		System.out.println("Got subscribed event 已订阅事件: " + chan + " " + subsLatch.getCount());
         });
 
         client.connect();
@@ -53,13 +54,14 @@ public class PooledBitfinexApiBrokerTest {
                 .forEach(bfxPair -> {
                     client.sendCommand(new SubscribeCandlesCommand(BitfinexSymbols.candlesticks(bfxPair, BitfinexCandleTimeFrame.MINUTES_1)));
                     // Not all currency's have a orderbook (e.g., CFI:USD)
+                    // 并非所有货币都有订单簿（例如，CFI:USD）
                     // client.sendCommand(new SubscribeOrderbookCommand(BitfinexSymbols.orderBook(bfxPair, BitfinexOrderBookSymbol.Precision.P0, BitfinexOrderBookSymbol.Frequency.F0, 100)));
                     client.sendCommand(new SubscribeTickerCommand(BitfinexSymbols.ticker(bfxPair)));
                     client.sendCommand(new SubscribeTradesCommand(BitfinexSymbols.executedTrades(bfxPair)));
                 });
 
 
-        // then
+        // then 然后
         subsLatch.await();
 
         final int channelsSubscribed = channelLimit * 3 + 1;

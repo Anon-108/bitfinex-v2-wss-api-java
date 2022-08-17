@@ -43,6 +43,7 @@ import com.github.jnidzwetzki.bitfinex.v2.util.EventsInTimeslotManager;
 
 /**
  * BitfinexApiBroker client spreading amount of channels across multiple websocket connections.
+ * * BitfinexApiBroker 客户端跨多个 websocket 连接传播通道数量。
  */
 public class PooledBitfinexApiBroker implements BitfinexWebsocketClient {
 
@@ -149,7 +150,7 @@ public class PooledBitfinexApiBroker implements BitfinexWebsocketClient {
         }
         
         if(client == null) {
-        	throw new IllegalArgumentException("Client is null, please init first");
+        	throw new IllegalArgumentException("Client is null, please init first 客户端为空，请先初始化");
         }
         
         client.sendCommand(command);

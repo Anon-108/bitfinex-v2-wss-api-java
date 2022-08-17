@@ -30,10 +30,11 @@ public class UnsubscribeChannelCommand implements BitfinexCommand, BitfinexStrea
 
 	/**
 	 * The channel to unsubscribe
+	 * * 取消订阅的频道
 	 */
 	private final BitfinexStreamSymbol symbol;
 	private Function<BitfinexStreamSymbol, Integer> channelIdResolver = s -> {
-	    throw new IllegalStateException("Resolver is not set");
+	    throw new IllegalStateException("Resolver is not set 未设置解析器");
     };
 
 	public UnsubscribeChannelCommand(final BitfinexStreamSymbol symbol) {

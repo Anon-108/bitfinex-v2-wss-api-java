@@ -22,7 +22,7 @@ import com.github.jnidzwetzki.bitfinex.v2.BitfinexWebsocketClient;
 public class CalculateCommand implements BitfinexCommand {
 	
 	/**
-	 * The symbol
+	 * The symbol 符号
 	 */
 	private String symbol;
 

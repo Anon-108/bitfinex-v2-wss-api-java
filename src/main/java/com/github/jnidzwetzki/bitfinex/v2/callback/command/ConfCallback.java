@@ -38,9 +38,10 @@ public class ConfCallback implements CommandCallbackHandler {
 	public void handleChannelData(final JSONObject jsonObject) throws BitfinexClientException {
 		final String status = jsonObject.getString("status");
 		if (!status.equals("OK")) {
-			logger.info("Got wrong state back {}", status);
+			logger.info("Got wrong state back 返回错误的状态 {}", status);
 		}
 		// Got message: {"event":"conf","status":"OK","flags":65536}
+		// 收到消息：{"event":"conf","status":"OK","flags":65536}
 		if (jsonObject.has("flags")) {
 			final int features = jsonObject.getInt("flags");
 			this.connectionFeatureConsumer.accept(features);
@@ -51,7 +52,8 @@ public class ConfCallback implements CommandCallbackHandler {
 
 	/**
 	 * connection feature event consumer
-	 * @param consumer of event
+	 ** 连接功能事件消费者
+	 * @param consumer of event 事件消费者
 	 */
 	public void onConnectionFeatureEvent(Consumer<Integer> consumer) {
 		this.connectionFeatureConsumer = consumer;

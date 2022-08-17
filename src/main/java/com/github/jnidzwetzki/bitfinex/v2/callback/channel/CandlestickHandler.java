@@ -53,9 +53,11 @@ public class CandlestickHandler implements ChannelCallbackHandler {
             return;
         }
         // channel symbol trade:1m:tLTCUSD
+        // 通道符号交易：1m:tLTCUSD
         final Set<BitfinexCandle> candlestickList = new TreeSet<>(Comparator.comparing(BitfinexCandle::getTimestamp));
 
         // Snapshots contain multiple Bars, Updates only one
+        // 快照包含多个 Bar，只更新一个
         if (payload.get(0) instanceof JSONArray) {
             for (int pos = 0; pos < payload.length(); pos++) {
                 final JSONArray parts = payload.getJSONArray(pos);
@@ -81,6 +83,7 @@ public class CandlestickHandler implements ChannelCallbackHandler {
 
     private BitfinexCandle jsonToCandlestick(final JSONArray parts) {
         // 0 = Timestamp, 1 = Open, 2 = Close, 3 = High, 4 = Low,  5 = Volume
+        // 0 = 时间戳，1 = 打开，2 = 关闭，3 = 高，4 = 低，5 = 交易量
         final long timestamp = parts.getLong(0);
         final BigDecimal open = parts.getBigDecimal(1);
         final BigDecimal close = parts.getBigDecimal(2);
@@ -93,8 +96,9 @@ public class CandlestickHandler implements ChannelCallbackHandler {
 
     /**
      * candlestick event consumer
+     * * 烛台/阴阳线事件消费者
      *
-     * @param consumer of event
+     * @param consumer of event 事件消费者
      */
     public void onCandlesticksEvent(BiConsumer<BitfinexCandlestickSymbol, Collection<BitfinexCandle>> consumer) {
         this.candlesConsumer = consumer;

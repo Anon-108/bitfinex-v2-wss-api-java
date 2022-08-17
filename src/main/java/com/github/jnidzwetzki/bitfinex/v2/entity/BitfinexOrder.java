@@ -33,67 +33,81 @@ public class BitfinexOrder {
 
     /**
      * Should be unique in the day (UTC) (not enforced)
+	 * * 在当天（UTC）中应该是唯一的（不强制）
      */
     private long clientId = -1;
 
     /**
      * (optional) Group id for the order
+	 * *（可选）订单的组 ID
      */
     private Optional<Long> clientGroupId = Optional.empty();
 
     /**
      * currency pair
+	 * * 货币对
      */
     private BitfinexCurrencyPair currencyPair;
 
     /**
      * order amount - pPositive for buy, Negative for sell
+	 * * 订单金额 - pPositive 买入，Negative 卖出
      */
     private BigDecimal amount;
 
     /**
      * order type
+	 * * 订单类型
      */
     private BitfinexOrderType orderType;
 
     /**
      * Price (Not required for market orders)
+	 * * 价格（市价单不需要）
      */
     private BigDecimal price;
 
     /**
      * Leverage for a derivative order. The value should be between 1 and 100 inclusive.
+	 * * 衍生订单的杠杆作用。该值应介于 1 和 100（含）之间。
      * The field is optional, if omitted the default leverage value of 10 will be used.
+	 * * 该字段是可选的，如果省略，将使用默认的杠杆值 10。
      */
     private int leverage;
 
     /**
      * The trailing price
+	 * * 追踪价格
      */
     private BigDecimal priceTrailing;
 
     /**
      * Auxiliary Limit price (for STOP LIMIT)
+	 * * 辅助限价（针对 STOP LIMIT）
      */
     private BigDecimal priceAuxLimit;
 
     /**
      * OCO stop price
+	 * * OCO 止损价
      */
     private BigDecimal priceOcoStop;
 
     /**
      * The Order flags
+	 * * 订单标志
      */
     private Set<BitfinexOrderFlag> orderFlags = new HashSet<>();
 
     /**
      * The affiliate code (optional)
+	 * * 会员代码（可选）
      */
     private String affiliateCode;
 
     /**
      * The api key
+	 * * API 密钥
      */
     private String apiKey;
 
@@ -203,6 +217,7 @@ public class BitfinexOrder {
 	
 	/**
 	 * Convert a flag field into enums
+	 * * 将标志字段转换为枚举
 	 * @param flags
 	 */
 	public void setOrderFlags(final int flags) {
@@ -214,6 +229,7 @@ public class BitfinexOrder {
 	
 	/**
 	 * Convert flag enums to flag field
+	 * * 将标志枚举转换为标志字段
 	 * @return
 	 */
 	public int getCombinedFlags() {
